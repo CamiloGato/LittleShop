@@ -28,6 +28,11 @@ namespace UI.Components
 
         public override void Close()
         {
+            icon.sprite = null;
+            itemName.text = "";
+            itemValue.text = "";
+            itemDescription.text = "";
+            _itemDataSo = null;
         }
 
         public void SetItem(ItemDataSO itemDataSo)

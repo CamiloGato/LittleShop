@@ -51,12 +51,13 @@ namespace Playable.Input
 
         private void OnMoveActionOncanceled(InputAction.CallbackContext ctx)
         {
-            _moveInput = Vector2.zero;
+            _moveInput = _entityTransform.position;
         }
 
         private void OnMoveActionOnperformed(InputAction.CallbackContext ctx)
         {
-            _moveInput = ctx.ReadValue<Vector2>();
+            Vector3 value = ctx.ReadValue<Vector2>();
+            _moveInput = _entityTransform.position + value;
         }
 
         #endregion

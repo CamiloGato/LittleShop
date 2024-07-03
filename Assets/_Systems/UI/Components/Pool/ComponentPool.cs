@@ -30,12 +30,10 @@ namespace UI.Components.Pool
                 component.gameObject.SetActive(true);
                 return component;
             }
-            else
-            {
-                T newInstance = Object.Instantiate(_prefab, _parentTransform);
-                newInstance.gameObject.SetActive(true);
-                return newInstance;
-            }
+
+            T newInstance = Object.Instantiate(_prefab, _parentTransform);
+            newInstance.gameObject.SetActive(true);
+            return newInstance;
         }
 
         public void ReturnToPool(T component)

@@ -10,9 +10,13 @@ namespace UI.Controllers
         [Header("Components")]
         [SerializeField] private PlayerImageComponent playerImageComponent;
         
+        private int _currentLook;
+        
         public override void Initialize()
         {
             base.Initialize();
+            _currentLook = 0;
+            
             baseView.leftButtonEvent.AddListener(NextView);
             baseView.rightButtonEvent.AddListener(PrevView);
         }
@@ -28,9 +32,13 @@ namespace UI.Controllers
         {
             playerImageComponent.SetPlayerModel(playerModel);
         }
+
+        public void UpdatePlayerView()
+        {
+            playerImageComponent.UpdatePlayerView(_currentLook);
+        }
         
         #region Events
-        private int _currentLook;
         
         private void PrevView()
         {

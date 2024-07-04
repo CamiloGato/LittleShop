@@ -17,6 +17,11 @@ namespace UI.Controllers
             baseView.backButtonEvent.RemoveAllListeners();
             baseView.transactionButtonEvent.RemoveAllListeners();
         }
+        
+        public void SetTransactionText(string text)
+        {
+            baseView.SetTransactionText(text);
+        }
 
         private void BackButton()
         {

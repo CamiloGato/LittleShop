@@ -1,7 +1,5 @@
-﻿using System.Globalization;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace UI.Views
 {
@@ -11,8 +9,6 @@ namespace UI.Views
         [SerializeField] private CanvasGroup canvasGroup;
         [SerializeField] private TMP_Text playerNameText;
         [SerializeField] private TMP_Text playerMoneyText;
-        [SerializeField] private Image timeImage;
-        [SerializeField] private Text timeText;
         
         public override void Initialize()
         {

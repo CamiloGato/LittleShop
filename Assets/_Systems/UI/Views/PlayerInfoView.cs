@@ -29,11 +29,5 @@ namespace UI.Views
             playerNameText.text = playerName;
             playerMoneyText.text = playerMoney.ToString();
         }
-
-        public void SetTimeState(Sprite timeSprite, float currentTime)
-        {
-            timeImage.sprite = timeSprite;
-            timeText.text = currentTime.ToString("hh':'mm'");
-        }
     }
 }

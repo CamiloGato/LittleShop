@@ -11,7 +11,7 @@ namespace UI.Controllers
         [Header("Components Prefab")]
         [SerializeField] private ShopItemComponent shopItemComponentPrefab;
         
-        [Header("Canvas Group")]
+        [Header("Section Group")]
         [SerializeField] private RectTransform sectionGroup;
         
         private ComponentPool<ShopItemComponent> _itemPool;
@@ -22,8 +22,13 @@ namespace UI.Controllers
             _itemPool = new ComponentPool<ShopItemComponent>(shopItemComponentPrefab, sectionGroup);
         }
 
-        #region Methods
+        public override void Close()
+        {
+            base.Close();
+            _itemPool.Clear();
+        }
         
+        #region Methods
         public void AddItem(ItemModel itemData)
         {
             ShopItemComponent item = _itemPool.Get();
@@ -36,7 +41,6 @@ namespace UI.Controllers
             item.Close();
             _itemPool.ReturnToPool(item);
         }
-        
         #endregion
     }
 }

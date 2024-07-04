@@ -9,6 +9,7 @@ namespace UI.Controllers
     {
         [Header("Components")]
         [SerializeField] private PlayerImageComponent playerImageComponent;
+        [SerializeField] private TimeStampComponent timeStampComponent;
         
         public override void Initialize()
         {
@@ -20,6 +21,8 @@ namespace UI.Controllers
             base.Close();
         }
 
+        #region Methods
+        
         public void SetPlayerModel(PlayerImageModel playerModel)
         {
             playerImageComponent.SetPlayerModel(playerModel);
@@ -30,15 +33,16 @@ namespace UI.Controllers
             playerImageComponent.UpdatePlayerView(0);
         }
         
+        public void UpdateTimeState(TimeStateModel timeState)
+        {
+            timeStampComponent.UpdateTime(timeState);
+        }
+        
         public void UpdatePlayerInfo(PlayerInfoModel playerInfo)
         {
             baseView.SetPlayerInfo(playerInfo.playerName, playerInfo.playerMoney);
         }
         
-        public void UpdateTimeState(TimeStateModel timeState)
-        {
-            baseView.SetTimeState(timeState.timeSprite, timeState.currentTime);
-        }
-        
+        #endregion
     }
 }

@@ -41,5 +41,23 @@ namespace UI.Components.Pool
             component.gameObject.SetActive(false);
             _pool.Enqueue(component);
         }
+
+        public void Clear(bool destroy = false)
+        {
+            if (destroy)
+            {
+                foreach (T component in _pool)
+                {
+                    Object.Destroy(component.gameObject);
+                }
+            }
+            else
+            {
+                foreach (T component in _pool)
+                {
+                    ReturnToPool(component);
+                }
+            }
+        }
     }
 }

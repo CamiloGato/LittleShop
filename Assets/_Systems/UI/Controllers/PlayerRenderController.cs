@@ -28,6 +28,8 @@ namespace UI.Controllers
             baseView.rightButtonEvent.RemoveAllListeners();
         }
 
+        #region Methods
+        
         public void SetPlayerModel(PlayerImageModel playerModel)
         {
             playerImageComponent.SetPlayerModel(playerModel);
@@ -37,6 +39,8 @@ namespace UI.Controllers
         {
             playerImageComponent.UpdatePlayerView(_currentLook);
         }
+        
+        #endregion
         
         #region Events
         

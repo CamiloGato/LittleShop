@@ -8,15 +8,12 @@ namespace UI.Views
     {
         [Header("Canvas Group")]
         [SerializeField] private CanvasGroup canvasGroup;
-        
-        [Header("Images")]
-        [SerializeField] private Image basePlayer;
-        
+
         [Header("Buttons")]
         [SerializeField] private Button leftButton;
         [SerializeField] private Button rightButton;
 
-        [Header("Events")]
+        [Header("Events")] [Space]
         public UnityEvent leftButtonEvent;
         public UnityEvent rightButtonEvent;
         

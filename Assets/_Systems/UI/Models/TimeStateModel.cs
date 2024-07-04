@@ -4,17 +4,10 @@ using UnityEngine;
 namespace UI.Models
 {
     [Serializable]
-    public enum TimeStateEnum
-    {
-        Day,
-        Night
-    }
-    
-    [Serializable]
     public class TimeStateModel
     {
-        public TimeStateEnum timeState;
-        public Sprite timeSprite;
+        public Sprite skySprite;
+        public Sprite sunSprite;
         public float currentTime;
     }
 }

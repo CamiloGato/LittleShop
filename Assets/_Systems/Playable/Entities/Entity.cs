@@ -1,33 +1,35 @@
 ﻿using Playable.Input;
 using Playable.Movement;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 namespace Playable.Entities
 {
-    [RequireComponent(typeof(NavMeshAgent))]
+    [RequireComponent(typeof(Rigidbody2D))]
     public class Entity : MonoBehaviour
     {
+        [SerializeField] private Camera mainCamera;
         [SerializeField] private InputActionAsset inputActionAsset;
-        
-        private NavMeshAgent _navMeshAgent;
-        
+        [SerializeField] private float speed = 5f;
+
+        private Rigidbody2D _rigidbody2D;
         private IInputHandler _inputHandler;
         private IMovementHandler _movementHandler;
 
         private void Awake()
         {
-            _navMeshAgent = GetComponent<NavMeshAgent>();
-            _inputHandler = new KeyboardInputHandler(inputActionAsset, transform);
-            _movementHandler = new EntityMovementHandler(_navMeshAgent);
+            _rigidbody2D = GetComponent<Rigidbody2D>();
+            _inputHandler = new PointClickInputHandler(inputActionAsset, mainCamera);
+            _movementHandler = new EntityMovementHandler(_rigidbody2D, speed);
         }
 
         private void Update()
         {
-            Vector2 position = _inputHandler.GetPosition();
-            Debug.Log(position);
-            _movementHandler.Move(position);
+            if (_inputHandler.IsPressed())
+            {
+                Vector2 position = _inputHandler.GetPosition();
+                _movementHandler.Move(position);
+            }
         }
     }
 }

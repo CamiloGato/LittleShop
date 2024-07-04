@@ -12,7 +12,7 @@ namespace Playable.Input
         public PointClickInputHandler(InputActionAsset inputActionAsset, Camera camera)
         {
             _camera = camera;
-            
+
             InputActionMap actionMap = inputActionAsset.FindActionMap("Player", true);
             InputAction clickAction = actionMap.FindAction("Click", true);
 
@@ -21,6 +21,7 @@ namespace Playable.Input
 
             clickAction.Enable();
         }
+
         public Vector2 GetPosition()
         {
             return _clickPosition;
@@ -30,9 +31,9 @@ namespace Playable.Input
         {
             return _clickTriggered;
         }
-        
+
         #region InputAction Callbacks
-        
+
         private void OnClick(InputAction.CallbackContext context)
         {
             _clickTriggered = true;
@@ -45,14 +46,17 @@ namespace Playable.Input
             {
                 _clickPosition = hit.point;
             }
+            else
+            {
+                _clickPosition = worldPoint;
+            }
         }
 
         private void OnClickReleased(InputAction.CallbackContext obj)
         {
             _clickTriggered = false;
         }
-        
+
         #endregion
-        
     }
 }

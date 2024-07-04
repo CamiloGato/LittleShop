@@ -17,6 +17,8 @@ namespace UI.Controllers
             base.Initialize();
             _currentLook = 0;
             
+            playerImageComponent.Initialize();
+            
             baseView.leftButtonEvent.AddListener(NextView);
             baseView.rightButtonEvent.AddListener(PrevView);
         }
@@ -24,6 +26,9 @@ namespace UI.Controllers
         public override void Close()
         {
             base.Close();
+            
+            playerImageComponent.Close();
+            
             baseView.leftButtonEvent.RemoveAllListeners();
             baseView.rightButtonEvent.RemoveAllListeners();
         }

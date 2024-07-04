@@ -16,15 +16,11 @@ namespace UI.Components
         [SerializeField] private TMP_Text itemDescription;
         
         private ItemModel _itemModel;
+        private UnityAction<ItemModel> _callback;
         
         public override void Initialize()
         {
-            if (_itemModel == null) throw new System.Exception("ItemDataSO has not been assigned");
-            
-            icon.sprite = _itemModel.icon;
-            itemName.text = _itemModel.name;
-            itemValue.text = _itemModel.value.ToString();
-            itemDescription.text = _itemModel.description;
+            button.onClick.AddListener(OnClick);
         }
         
         public override void Close()
@@ -34,6 +30,7 @@ namespace UI.Components
             itemValue.text = "";
             itemDescription.text = "";
             _itemModel = null;
+            _callback = null;
             
             button.onClick.RemoveAllListeners();
         }
@@ -41,11 +38,21 @@ namespace UI.Components
         public void SetItem(ItemModel itemModel)
         {
             _itemModel = itemModel;
+            
+            icon.sprite = _itemModel.icon;
+            itemName.text = _itemModel.name;
+            itemValue.text = _itemModel.value.ToString();
+            itemDescription.text = _itemModel.description;
         }
-
-        public void ListenClick(UnityAction callback)
+        
+        private void OnClick()
         {
-            button.onClick.AddListener(callback);
+            _callback?.Invoke(_itemModel);
+        }
+        
+        public void AddClickCallback(UnityAction<ItemModel> callback)
+        {
+            _callback = callback;
         }
     }
 }

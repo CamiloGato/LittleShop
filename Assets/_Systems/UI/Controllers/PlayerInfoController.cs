@@ -17,9 +17,6 @@ namespace UI.Controllers
         [SerializeField] private MoneyDifferenceComponent moneyDifferenceComponent;
         [SerializeField] private RectTransform sectionGroup;
         
-        [Header("Data")]
-        [SerializeField] private TimeImageModel timeImage;
-        
         [Header("Events")] [Space]
         [SerializeField] private UnityEvent<MoneyDifferenceComponent> finishAnimationEvent;
         
@@ -31,7 +28,7 @@ namespace UI.Controllers
         {
             base.Initialize();
             
-            _moneyDifferencePool = new ComponentPool<MoneyDifferenceComponent>(moneyDifferenceComponent, sectionGroup);
+            _moneyDifferencePool = new ComponentPool<MoneyDifferenceComponent>(moneyDifferenceComponent, sectionGroup, 3);
             
             finishAnimationEvent = new UnityEvent<MoneyDifferenceComponent>();
             finishAnimationEvent.AddListener(FinishAnimation);
@@ -51,27 +48,19 @@ namespace UI.Controllers
         }
 
         #region Methods
-        
-        public void SetPlayerImageModel(PlayerImageModel playerModel)
+        public void UpdatePlayerView(PlayerImageModel playerModel)
         {
             playerImageComponent.SetPlayerModel(playerModel);
-        }
-        
-        public void UpdatePlayerView()
-        {
             playerImageComponent.UpdatePlayerView(0);
         }
         
-        public void UpdateTimeState(float time)
+        public void UpdateTime(float time)
         {
             int hours = (int) time / 60;
             int minutes = (int) time % 60;
-
-            Sprite skySprite = hours < 12 ? timeImage.skyDaySprite : timeImage.skyNightSprite;
-            Sprite sunSprite = hours < 12 ? timeImage.sunDaySprite : timeImage.sunNightSprite;
          
             timeStampComponent.UpdateTime(hours, minutes);
-            timeStampComponent.UpdateTimeImage(skySprite, sunSprite);
+            timeStampComponent.UpdateTimeImage(hours);
         }
         
         public void UpdatePlayerInfo(PlayerInfoModel playerInfo)

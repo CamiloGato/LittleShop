@@ -6,30 +6,45 @@ namespace UI.Models
 {
     
     [Serializable]
+    public enum ClothImageType
+    {
+        Base,
+        Out,
+        Har,
+        Hat
+    }
+    
+    [Serializable]
     public class ClothImagePostureModel
     {
+        public ClothImageType type;
         public Sprite down;
         public Sprite up;
         public Sprite left;
         public Sprite right;
 
-        private Dictionary<int, Sprite> _postureSprites = new Dictionary<int, Sprite>();
-
         public Sprite this[int index]
         {
-            get => _postureSprites[index];
-            set => _postureSprites[index] = value;
+            get
+            {
+                return index switch
+                {
+                    0 => down,
+                    1 => left,
+                    2 => up,
+                    3 => right,
+                    _ => null
+                };
+            }
         }
+        
         
     }
     
     [Serializable]
     public class PlayerImageModel
     {
-        public ClothImagePostureModel baseSprite;
-        public ClothImagePostureModel outSprite;
-        public ClothImagePostureModel harSprite;
-        public ClothImagePostureModel hatSprite;
+        public List<ClothImagePostureModel> clothSprites;
         
         private int _currentLook;
         public int CurrentLook
@@ -38,10 +53,26 @@ namespace UI.Models
             set => _currentLook = value;
         }
         
-        public Sprite BaseSprite => baseSprite[_currentLook];
-        public Sprite OutSprite => outSprite[_currentLook];
-        public Sprite HarSprite => harSprite[_currentLook];
-        public Sprite HatSprite => hatSprite[_currentLook];
+        public Sprite this[ClothImageType type]
+        {
+            get
+            {
+                // Save the cloth
+                ClothImagePostureModel cloth = 
+                    clothSprites.Find(x => x.type == type);
+                // Return the cloth current look sprite
+                return cloth?[CurrentLook];
+            }
+        }
+
+        public void ChangeClothLook(ClothImagePostureModel cloth)
+        {
+            ClothImagePostureModel currentCloth = clothSprites.Find(x => x.type == cloth.type);
+            currentCloth.down = cloth.down;
+            currentCloth.up = cloth.up;
+            currentCloth.left = cloth.left;
+            currentCloth.right = cloth.right;
+        }
         
     }
 }

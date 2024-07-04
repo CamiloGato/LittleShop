@@ -23,7 +23,7 @@ namespace UI.Views
         public void SetPlayerInfo(string playerName, int playerMoney)
         {
             playerNameText.text = playerName;
-            playerMoneyText.text = playerMoney.ToString();
+            playerMoneyText.text = $"$ {playerMoney:N0}";
         }
     }
 }

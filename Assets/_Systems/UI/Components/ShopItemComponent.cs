@@ -16,6 +16,8 @@ namespace UI.Components
         [SerializeField] private TMP_Text itemDescription;
         
         private ItemModel _itemModel;
+        public ItemModel ItemModel => _itemModel;
+        
         private UnityAction<ShopItemComponent> _callback;
         
         public override void Initialize()

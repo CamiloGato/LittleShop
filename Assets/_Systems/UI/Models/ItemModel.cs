@@ -11,4 +11,10 @@ namespace UI.Models
         public int value;
         public string description;
     }
+    
+    [Serializable]
+    public class ClothModel : ItemModel
+    {
+        public ClothImagePostureModel clothImagePosture;
+    }
 }

@@ -6,6 +6,7 @@ namespace UI.Components.Pool
     public class ComponentPool<T> where T : BaseComponent
     {
         private readonly Queue<T> _pool = new Queue<T>();
+        private readonly HashSet<T> _activePool = new HashSet<T>();
         private readonly T _prefab;
         private readonly Transform _parentTransform;
 
@@ -24,36 +25,45 @@ namespace UI.Components.Pool
 
         public T Get()
         {
-            if (_pool.Count > 0)
-            {
-                T component = _pool.Dequeue();
-                component.gameObject.SetActive(true);
-                return component;
-            }
+            T component = _pool.Count > 0 
+                ? _pool.Dequeue()
+                : Object.Instantiate(_prefab, _parentTransform);
 
-            T newInstance = Object.Instantiate(_prefab, _parentTransform);
-            newInstance.gameObject.SetActive(true);
-            return newInstance;
+            _activePool.Add(component);
+            component.gameObject.SetActive(true);
+            return component;
         }
 
         public void ReturnToPool(T component)
         {
-            component.gameObject.SetActive(false);
-            _pool.Enqueue(component);
+            if (_activePool.Remove(component))
+            {
+                component.gameObject.SetActive(false);
+                _pool.Enqueue(component);
+            }
         }
 
         public void Clear(bool destroy = false)
         {
             if (destroy)
             {
-                foreach (T component in _pool)
+                while (_pool.Count > 0)
+                {
+                    T component = _pool.Dequeue();
+                    Object.Destroy(component.gameObject);
+                }
+
+                foreach (T component in _activePool)
                 {
                     Object.Destroy(component.gameObject);
                 }
+
+                _activePool.Clear();
             }
             else
             {
-                foreach (T component in _pool)
+                List<T> activeComponents = new List<T>(_activePool);
+                foreach (T component in activeComponents)
                 {
                     ReturnToPool(component);
                 }

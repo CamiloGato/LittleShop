@@ -11,6 +11,7 @@ namespace UI.Controllers
         [SerializeField] private PlayerImageComponent playerImageComponent;
         
         private int _currentLook;
+        private PlayerImageModel _playerModel;
         
         public override void Initialize()
         {
@@ -35,14 +36,23 @@ namespace UI.Controllers
 
         #region Methods
         
-        public void SetPlayerModel(PlayerImageModel playerModel)
+        public void UpdatePlayerView(PlayerImageModel playerModel)
         {
+            _playerModel = playerModel;
+            
             playerImageComponent.SetPlayerModel(playerModel);
-        }
-
-        public void UpdatePlayerView()
-        {
             playerImageComponent.UpdatePlayerView(_currentLook);
+        }
+        
+        public void UpdatePlayerClothView(ClothModel clothModel)
+        {
+            _playerModel.ChangeClothLook(clothModel.clothImagePosture);
+            playerImageComponent.UpdatePlayerClothView(clothModel);
+        }
+        
+        public void UpdatePlayerItemView(ItemModel itemModel)
+        {
+            playerImageComponent.UpdatePlayerItemView(itemModel);
         }
         
         #endregion

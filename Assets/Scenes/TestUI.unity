@@ -193,11 +193,6 @@ MonoBehaviour:
   timeStampComponent: {fileID: 1673213447}
   moneyDifferenceComponent: {fileID: 1844268957458756986, guid: 50396bde177345c46a19120cb648da5e, type: 3}
   sectionGroup: {fileID: 1141095264}
-  timeImage:
-    skyDaySprite: {fileID: 0}
-    sunDaySprite: {fileID: 0}
-    skyNightSprite: {fileID: 0}
-    sunNightSprite: {fileID: 0}
   finishAnimationEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -545,8 +540,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 462.4301, y: 462.4301}
+  m_AnchoredPosition: {x: 58.371426, y: -42.287}
+  m_SizeDelta: {x: 783.6591, y: 547.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &245547306
 MonoBehaviour:
@@ -568,7 +563,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -1691955830, guid: c0d11da8ea016ac4484d515f62fee043, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -781,6 +776,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 349149650}
   m_CullTransparentMesh: 1
+--- !u!1 &469351968
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 469351969}
+  - component: {fileID: 469351971}
+  - component: {fileID: 469351970}
+  m_Layer: 5
+  m_Name: Item
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &469351969
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 469351968}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1646861188}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 141.25, y: 41}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &469351970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 469351968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 925515782, guid: 85fd9bb096cb772469b80b5167fdf97a, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &469351971
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 469351968}
+  m_CullTransparentMesh: 1
 --- !u!1 &586211037
 GameObject:
   m_ObjectHideFlags: 0
@@ -834,40 +904,52 @@ MonoBehaviour:
   popUpController: {fileID: 760447409}
   shopItemsController: {fileID: 1034959713}
   shopTransactionController: {fileID: 2094271658}
-  playerRenderView:
-    baseSprite:
-      down: {fileID: 0}
-      up: {fileID: 0}
-      left: {fileID: 0}
-      right: {fileID: 0}
-    outSprite:
-      down: {fileID: 0}
-      up: {fileID: 0}
-      left: {fileID: 0}
-      right: {fileID: 0}
-    harSprite:
-      down: {fileID: 0}
-      up: {fileID: 0}
-      left: {fileID: 0}
-      right: {fileID: 0}
-    hatSprite:
-      down: {fileID: 0}
-      up: {fileID: 0}
-      left: {fileID: 0}
-      right: {fileID: 0}
-  playerInfoView:
-    playerName: 
-    playerMoney: 0
-  popUpView:
-    icon: {fileID: 0}
-    title: 
-    description: 
-  shopItemView:
-    name: 
-    icon: {fileID: 0}
-    value: 0
-    description: 
-  time: 0
+  playerImageModel:
+    clothSprites:
+    - type: 0
+      down: {fileID: 2080604489, guid: b10a781606fef2540abbf4adf4d58928, type: 3}
+      up: {fileID: -1973467742, guid: b10a781606fef2540abbf4adf4d58928, type: 3}
+      left: {fileID: -1494037628, guid: b10a781606fef2540abbf4adf4d58928, type: 3}
+      right: {fileID: -687587296, guid: b10a781606fef2540abbf4adf4d58928, type: 3}
+    - type: 1
+      down: {fileID: -243861882, guid: 1c1ed3692073d1646a5010fc5e843a30, type: 3}
+      up: {fileID: -1386665374, guid: 1c1ed3692073d1646a5010fc5e843a30, type: 3}
+      left: {fileID: 1996586051, guid: 1c1ed3692073d1646a5010fc5e843a30, type: 3}
+      right: {fileID: -544072539, guid: 1c1ed3692073d1646a5010fc5e843a30, type: 3}
+    - type: 2
+      down: {fileID: 1934319991, guid: 403d3212dd23bab4489493dec12925e3, type: 3}
+      up: {fileID: -975577970, guid: 403d3212dd23bab4489493dec12925e3, type: 3}
+      left: {fileID: 1519004896, guid: 403d3212dd23bab4489493dec12925e3, type: 3}
+      right: {fileID: -262900724, guid: 403d3212dd23bab4489493dec12925e3, type: 3}
+    - type: 3
+      down: {fileID: 274962576, guid: 232f31634f07b9046a99f73efb16c3ca, type: 3}
+      up: {fileID: 1692290327, guid: 232f31634f07b9046a99f73efb16c3ca, type: 3}
+      left: {fileID: -1564664611, guid: 232f31634f07b9046a99f73efb16c3ca, type: 3}
+      right: {fileID: -1850356150, guid: 232f31634f07b9046a99f73efb16c3ca, type: 3}
+  playerInfoModel:
+    playerName: Juan espinoza paz
+    playerMoney: 300000
+  popUpModel:
+    icon: {fileID: -1276528530, guid: 85fd9bb096cb772469b80b5167fdf97a, type: 3}
+    title: Mensaje
+    description: Ten cuidado con todos
+  shopItemModel:
+    name: Icono? XD
+    icon: {fileID: -1827994023, guid: 85fd9bb096cb772469b80b5167fdf97a, type: 3}
+    value: 3000
+    description: vale mucho
+  shopClothModel:
+    name: Ropa amarilla
+    icon: {fileID: 1932943246, guid: c73b43eab5839034c941cf17aefa8fe7, type: 3}
+    value: 1333
+    description: Ropa literal amarilla
+    clothImagePosture:
+      type: 1
+      down: {fileID: 1932943246, guid: c73b43eab5839034c941cf17aefa8fe7, type: 3}
+      up: {fileID: 352984326, guid: c73b43eab5839034c941cf17aefa8fe7, type: 3}
+      left: {fileID: 1959171216, guid: c73b43eab5839034c941cf17aefa8fe7, type: 3}
+      right: {fileID: 645052415, guid: c73b43eab5839034c941cf17aefa8fe7, type: 3}
+  time: 1350
 --- !u!1 &604046360
 GameObject:
   m_ObjectHideFlags: 0
@@ -1232,9 +1314,9 @@ RectTransform:
   m_Father: {fileID: 313573054}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.90440744}
-  m_AnchoredPosition: {x: 0, y: 1.2600098}
-  m_SizeDelta: {x: 0, y: 2.5199966}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -50}
+  m_SizeDelta: {x: 0, y: -100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &760447409
 MonoBehaviour:
@@ -2459,6 +2541,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1300368775}
   m_CullTransparentMesh: 1
+--- !u!1 &1304605845
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1304605846}
+  - component: {fileID: 1304605848}
+  - component: {fileID: 1304605847}
+  m_Layer: 5
+  m_Name: Item
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1304605846
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304605845}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1751764080}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.4001236, y: -61.999992}
+  m_SizeDelta: {x: 325.813, y: 325.813}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1304605847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304605845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -1700553535, guid: 85fd9bb096cb772469b80b5167fdf97a, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1304605848
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304605845}
+  m_CullTransparentMesh: 1
 --- !u!1 &1400980530
 GameObject:
   m_ObjectHideFlags: 0
@@ -2769,11 +2926,12 @@ RectTransform:
   - {fileID: 1248258142}
   - {fileID: 681507510}
   - {fileID: 953225309}
+  - {fileID: 469351969}
   m_Father: {fileID: 245547305}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -15}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1646861189
@@ -2792,27 +2950,9 @@ MonoBehaviour:
   outPlayer: {fileID: 1248258143}
   harPlayer: {fileID: 681507511}
   hatPlayer: {fileID: 953225310}
+  itemPlayer: {fileID: 469351970}
   playerImageModel:
-    baseSprite:
-      down: {fileID: 0}
-      up: {fileID: 0}
-      left: {fileID: 0}
-      right: {fileID: 0}
-    outSprite:
-      down: {fileID: 0}
-      up: {fileID: 0}
-      left: {fileID: 0}
-      right: {fileID: 0}
-    harSprite:
-      down: {fileID: 0}
-      up: {fileID: 0}
-      left: {fileID: 0}
-      right: {fileID: 0}
-    hatSprite:
-      down: {fileID: 0}
-      up: {fileID: 0}
-      left: {fileID: 0}
-      right: {fileID: 0}
+    clothSprites: []
 --- !u!1 &1652263526
 GameObject:
   m_ObjectHideFlags: 0
@@ -2951,6 +3091,20 @@ MonoBehaviour:
   skyImage: {fileID: 1064072384}
   sunImage: {fileID: 766643917}
   timeText: {fileID: 1467223800}
+  timeImage:
+    timeSkySunModels:
+    - hourRise: 5
+      skySprite: {fileID: 1035571320, guid: dcf524f902651664187916b115e25d01, type: 3}
+      sunSprite: {fileID: 1583940722, guid: dcf524f902651664187916b115e25d01, type: 3}
+    - hourRise: 11
+      skySprite: {fileID: 688128856, guid: dcf524f902651664187916b115e25d01, type: 3}
+      sunSprite: {fileID: 1249945112, guid: dcf524f902651664187916b115e25d01, type: 3}
+    - hourRise: 16
+      skySprite: {fileID: 211806183, guid: dcf524f902651664187916b115e25d01, type: 3}
+      sunSprite: {fileID: -1932001902, guid: dcf524f902651664187916b115e25d01, type: 3}
+    - hourRise: 18
+      skySprite: {fileID: -486861275, guid: dcf524f902651664187916b115e25d01, type: 3}
+      sunSprite: {fileID: -112962454, guid: dcf524f902651664187916b115e25d01, type: 3}
 --- !u!1 &1684241193
 GameObject:
   m_ObjectHideFlags: 0
@@ -3255,6 +3409,7 @@ RectTransform:
   - {fileID: 1993044681}
   - {fileID: 1300368776}
   - {fileID: 1930727738}
+  - {fileID: 1304605846}
   m_Father: {fileID: 1059263747}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -3329,27 +3484,9 @@ MonoBehaviour:
   outPlayer: {fileID: 1993044682}
   harPlayer: {fileID: 1300368777}
   hatPlayer: {fileID: 1930727739}
+  itemPlayer: {fileID: 1304605847}
   playerImageModel:
-    baseSprite:
-      down: {fileID: 0}
-      up: {fileID: 0}
-      left: {fileID: 0}
-      right: {fileID: 0}
-    outSprite:
-      down: {fileID: 0}
-      up: {fileID: 0}
-      left: {fileID: 0}
-      right: {fileID: 0}
-    harSprite:
-      down: {fileID: 0}
-      up: {fileID: 0}
-      left: {fileID: 0}
-      right: {fileID: 0}
-    hatSprite:
-      down: {fileID: 0}
-      up: {fileID: 0}
-      left: {fileID: 0}
-      right: {fileID: 0}
+    clothSprites: []
 --- !u!1 &1845827084
 GameObject:
   m_ObjectHideFlags: 0
@@ -3543,7 +3680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3604,7 +3741,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 125.5, y: -190.75}
+  m_AnchoredPosition: {x: 263, y: -230}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1932318826
@@ -3739,7 +3876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3875,7 +4012,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -136.75, y: -190.75}
+  m_AnchoredPosition: {x: -266, y: -228}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2020377869

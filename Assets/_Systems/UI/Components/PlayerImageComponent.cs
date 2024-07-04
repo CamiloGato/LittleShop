@@ -11,13 +11,23 @@ namespace UI.Components
         [SerializeField] private Image outPlayer;
         [SerializeField] private Image harPlayer;
         [SerializeField] private Image hatPlayer;
+        [SerializeField] private Image itemPlayer;
         
         [Header("Data")]
         [SerializeField] private PlayerImageModel playerImageModel;
-        
+
         public override void Initialize() { }
-        
-        public override void Close() { }
+
+        public override void Close()
+        {
+            playerImageModel.CurrentLook = 0;
+            
+            basePlayer.sprite = null;
+            outPlayer.sprite = null;
+            harPlayer.sprite = null;
+            hatPlayer.sprite = null;
+            itemPlayer.sprite = null;
+        }
         
         public void SetPlayerModel(PlayerImageModel playerModel)
         {
@@ -28,10 +38,21 @@ namespace UI.Components
         {
             playerImageModel.CurrentLook = index;
             
-            basePlayer.sprite = playerImageModel.BaseSprite;
-            outPlayer.sprite = playerImageModel.OutSprite;
-            harPlayer.sprite = playerImageModel.HarSprite;
-            hatPlayer.sprite = playerImageModel.HatSprite;
+            basePlayer.sprite = playerImageModel[ClothImageType.Base];
+            outPlayer.sprite = playerImageModel[ClothImageType.Out];
+            harPlayer.sprite = playerImageModel[ClothImageType.Har];
+            hatPlayer.sprite = playerImageModel[ClothImageType.Hat];
+        }
+        
+        public void UpdatePlayerItemView(ItemModel itemModel)
+        {
+            itemPlayer.sprite = itemModel.icon;
+        }
+        
+        public void UpdatePlayerClothView(ClothModel clothModel)
+        {
+            playerImageModel.ChangeClothLook(clothModel.clothImagePosture);
+            UpdatePlayerView(playerImageModel.CurrentLook);
         }
 
     }

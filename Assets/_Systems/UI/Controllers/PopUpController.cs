@@ -23,7 +23,7 @@ namespace UI.Controllers
         public override void Initialize()
         {
             base.Initialize();
-            _popUpPool = new ComponentPool<PopUpComponent>(popUpComponentPrefab, sectionGroup);
+            _popUpPool = new ComponentPool<PopUpComponent>(popUpComponentPrefab, sectionGroup, 3);
             destroyPopUpEvent = new UnityEvent<PopUpComponent>();
             destroyPopUpEvent.AddListener(RemovePopUp);
         }

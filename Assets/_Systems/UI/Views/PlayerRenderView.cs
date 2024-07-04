@@ -21,12 +21,8 @@ namespace UI.Views
         {
             canvasGroup.alpha = 1;
             
-            leftButton.onClick.AddListener(
-                () => leftButtonEvent?.Invoke()
-            );
-            rightButton.onClick.AddListener(
-                () => rightButtonEvent?.Invoke()
-            );
+            leftButton.onClick.AddListener(LeftButton);
+            rightButton.onClick.AddListener(RightButton);
         }
 
         public override void Close()
@@ -35,6 +31,16 @@ namespace UI.Views
             
             leftButton.onClick.RemoveAllListeners();
             rightButton.onClick.RemoveAllListeners();
+        }
+        
+        private void LeftButton()
+        {
+            leftButtonEvent?.Invoke();
+        }
+
+        private void RightButton()
+        {
+            rightButtonEvent?.Invoke();
         }
         
     }

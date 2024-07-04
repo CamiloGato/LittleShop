@@ -22,6 +22,9 @@ namespace UI.Controllers
             base.Close();
             baseView.backButtonEvent.RemoveAllListeners();
             baseView.transactionButtonEvent.RemoveAllListeners();
+            
+            transactionButtonEvent.RemoveAllListeners();
+            backButtonEvent.RemoveAllListeners();
         }
         
         #region Methods
@@ -29,6 +32,16 @@ namespace UI.Controllers
         public void SetTransactionText(string text)
         {
             baseView.SetTransactionText(text);
+        }
+        
+        public void AddCallbackTransactionButton(UnityAction callback)
+        {
+            transactionButtonEvent.AddListener(callback);
+        }
+        
+        public void AddCallbackBackButton(UnityAction callback)
+        {
+            backButtonEvent.AddListener(callback);
         }
         
         #endregion

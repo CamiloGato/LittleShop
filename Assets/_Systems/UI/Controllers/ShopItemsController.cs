@@ -30,6 +30,8 @@ namespace UI.Controllers
         {
             base.Close();
             _itemPool.Clear();
+            
+            selectedItemEvent.RemoveAllListeners();
         }
         
         #region Methods
@@ -45,6 +47,11 @@ namespace UI.Controllers
         {
             item.Close();
             _itemPool.ReturnToPool(item);
+        }
+        
+        public void AddCallbackSelectedItem(UnityAction<ShopItemComponent> callback)
+        {
+            selectedItemEvent.AddListener(callback);
         }
         
         #endregion

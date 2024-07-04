@@ -32,8 +32,8 @@ namespace UI.Controllers
         public void AddItem(ItemModel itemData)
         {
             ShopItemComponent item = _itemPool.Get();
-            item.SetItem(itemData);
             item.Initialize();
+            item.SetItem(itemData);
         }
 
         public void RemoveItem(ShopItemComponent item)

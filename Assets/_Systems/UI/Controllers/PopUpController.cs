@@ -18,12 +18,12 @@ namespace UI.Controllers
         [Header("Events")][Space]
         [SerializeField] private UnityEvent<PopUpComponent> destroyPopUpEvent;
         
-        private ComponentPool<PopUpComponent> _itemPool;
+        private ComponentPool<PopUpComponent> _popUpPool;
         
         public override void Initialize()
         {
             base.Initialize();
-            _itemPool = new ComponentPool<PopUpComponent>(popUpComponentPrefab, sectionGroup);
+            _popUpPool = new ComponentPool<PopUpComponent>(popUpComponentPrefab, sectionGroup);
             destroyPopUpEvent = new UnityEvent<PopUpComponent>();
             destroyPopUpEvent.AddListener(RemovePopUp);
         }
@@ -31,13 +31,13 @@ namespace UI.Controllers
         public override void Close()
         {
             base.Close();
-            _itemPool.Clear();
+            _popUpPool.Clear();
         }
         
         #region Methods
         public void AddPopUp(PopUpModel popUpData)
         {
-            PopUpComponent popUp = _itemPool.Get();
+            PopUpComponent popUp = _popUpPool.Get();
             popUp.Initialize();
             popUp.SetCallback(destroyPopUpEvent);
             popUp.SetPopUp(popUpData);
@@ -46,7 +46,7 @@ namespace UI.Controllers
         public void RemovePopUp(PopUpComponent popUp)
         {
             popUp.Close();
-            _itemPool.ReturnToPool(popUp);
+            _popUpPool.ReturnToPool(popUp);
         }
         #endregion
     }

@@ -1,7 +1,9 @@
 ﻿using UI.Components;
+using UI.Components.Pool;
 using UI.Models;
 using UI.Views;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace UI.Controllers
 {
@@ -11,14 +13,39 @@ namespace UI.Controllers
         [SerializeField] private PlayerImageComponent playerImageComponent;
         [SerializeField] private TimeStampComponent timeStampComponent;
         
+        [Header("Prefabs")]
+        [SerializeField] private MoneyDifferenceComponent moneyDifferenceComponent;
+        [SerializeField] private RectTransform sectionGroup;
+        
+        
+        [Header("Events")] [Space]
+        [SerializeField] private UnityEvent<MoneyDifferenceComponent> finishAnimationEvent;
+        
+        private ComponentPool<MoneyDifferenceComponent> _moneyDifferencePool;
+        
+        private int _currentMoney;
+        
         public override void Initialize()
         {
             base.Initialize();
+            
+            _moneyDifferencePool = new ComponentPool<MoneyDifferenceComponent>(moneyDifferenceComponent, sectionGroup);
+            
+            finishAnimationEvent = new UnityEvent<MoneyDifferenceComponent>();
+            finishAnimationEvent.AddListener(FinishAnimation);
+            
+            playerImageComponent.Initialize();
+            timeStampComponent.Initialize();
         }
-        
+
         public override void Close()
         {
             base.Close();
+            
+            _moneyDifferencePool.Clear();
+            
+            playerImageComponent.Close();
+            timeStampComponent.Close();
         }
 
         #region Methods
@@ -41,8 +68,24 @@ namespace UI.Controllers
         public void UpdatePlayerInfo(PlayerInfoModel playerInfo)
         {
             baseView.SetPlayerInfo(playerInfo.playerName, playerInfo.playerMoney);
+            
+            int difference = playerInfo.playerMoney - _currentMoney;
+            _currentMoney = playerInfo.playerMoney;
+
+            if (difference == 0) return;
+            
+            MoneyDifferenceComponent component = _moneyDifferencePool.Get();
+            component.Initialize();
+            component.SetCallback(finishAnimationEvent);
+            component.SetDifference(difference);
         }
         
         #endregion
+        
+        private void FinishAnimation(MoneyDifferenceComponent data)
+        {
+            data.Close();
+            _moneyDifferencePool.ReturnToPool(data);
+        }
     }
 }

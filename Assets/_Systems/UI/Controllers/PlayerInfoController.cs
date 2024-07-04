@@ -50,7 +50,7 @@ namespace UI.Controllers
 
         #region Methods
         
-        public void SetPlayerModel(PlayerImageModel playerModel)
+        public void SetPlayerImageModel(PlayerImageModel playerModel)
         {
             playerImageComponent.SetPlayerModel(playerModel);
         }

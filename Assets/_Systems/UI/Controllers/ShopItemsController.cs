@@ -35,6 +35,11 @@ namespace UI.Controllers
         }
         
         #region Methods
+        public void SetTitle(string title)
+        {
+            baseView.SetTitle(title);
+        }
+        
         public void AddItem(ItemModel itemData)
         {
             ShopItemComponent item = _itemPool.Get();

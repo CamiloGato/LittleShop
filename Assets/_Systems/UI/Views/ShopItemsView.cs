@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 namespace UI.Views
 {
@@ -6,6 +7,7 @@ namespace UI.Views
     {
         [Header("Canvas Group")]
         [SerializeField] private CanvasGroup canvasGroup;
+        [SerializeField] private TMP_Text titleText;
         
         public override void Initialize()
         {
@@ -16,5 +18,11 @@ namespace UI.Views
         {
             canvasGroup.alpha = 0;
         }
+        
+        public void SetTitle(string title)
+        {
+            titleText.text = title;
+        }
+        
     }
 }

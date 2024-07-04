@@ -1,9 +1,15 @@
-﻿using UI.Views;
+﻿using UI.Components;
+using UI.Models;
+using UI.Views;
+using UnityEngine;
 
 namespace UI.Controllers
 {
     public class PlayerRenderController : BaseController<PlayerRenderView>
     {
+        [Header("Components")]
+        [SerializeField] private PlayerImageComponent playerImageComponent;
+        
         public override void Initialize()
         {
             base.Initialize();
@@ -18,15 +24,26 @@ namespace UI.Controllers
             baseView.rightButtonEvent.RemoveAllListeners();
         }
 
-        #region Change Sprites Methods
+        public void SetPlayerModel(PlayerImageModel playerModel)
+        {
+            playerImageComponent.SetPlayerModel(playerModel);
+        }
+        
+        #region Events
+        private int _currentLook;
+        
         private void PrevView()
         {
-            // TODO: Change Sprites for next
+            _currentLook--;
+            _currentLook = _currentLook < 0 ? 3 : _currentLook;
+            playerImageComponent.UpdatePlayerView(_currentLook);
         }
 
         private void NextView()
         {
-            // TODO: Change Sprites for next
+            _currentLook++;
+            _currentLook = _currentLook > 3 ? 0 : _currentLook;
+            playerImageComponent.UpdatePlayerView(_currentLook);
         }
         #endregion
     }

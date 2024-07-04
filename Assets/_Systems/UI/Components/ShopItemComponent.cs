@@ -1,6 +1,7 @@
-﻿using Items.Models;
-using TMPro;
+﻿using TMPro;
+using UI.Models;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace UI.Components
@@ -8,36 +9,43 @@ namespace UI.Components
     public class ShopItemComponent : BaseComponent
     {
         [Header("Item")]
-        [SerializeField] private GameObject background;
+        [SerializeField] private Button button;
         [SerializeField] private Image icon;
         [SerializeField] private TMP_Text itemName;
         [SerializeField] private TMP_Text itemValue;
         [SerializeField] private TMP_Text itemDescription;
         
-        private ItemDataSO _itemDataSo;
+        private ItemModel _itemModel;
         
         public override void Initialize()
         {
-            if (!_itemDataSo) throw new System.Exception("ItemDataSO has not been assigned");
+            if (_itemModel == null) throw new System.Exception("ItemDataSO has not been assigned");
             
-            icon.sprite = _itemDataSo.icon;
-            itemName.text = _itemDataSo.item.name;
-            itemValue.text = _itemDataSo.item.value.ToString();
-            itemDescription.text = _itemDataSo.item.description;
+            icon.sprite = _itemModel.icon;
+            itemName.text = _itemModel.name;
+            itemValue.text = _itemModel.value.ToString();
+            itemDescription.text = _itemModel.description;
         }
-
+        
         public override void Close()
         {
             icon.sprite = null;
             itemName.text = "";
             itemValue.text = "";
             itemDescription.text = "";
-            _itemDataSo = null;
+            _itemModel = null;
+            
+            button.onClick.RemoveAllListeners();
         }
 
-        public void SetItem(ItemDataSO itemDataSo)
+        public void SetItem(ItemModel itemModel)
         {
-            _itemDataSo = itemDataSo;
+            _itemModel = itemModel;
+        }
+
+        public void ListenClick(UnityAction callback)
+        {
+            button.onClick.AddListener(callback);
         }
     }
 }

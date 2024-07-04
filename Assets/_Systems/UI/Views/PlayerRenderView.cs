@@ -11,20 +11,18 @@ namespace UI.Views
         
         [Header("Images")]
         [SerializeField] private Image basePlayer;
-        [SerializeField] private Image outPlayer;
-        [SerializeField] private Image harPlayer;
-        [SerializeField] private Image hatPlayer;
         
         [Header("Buttons")]
         [SerializeField] private Button leftButton;
         [SerializeField] private Button rightButton;
 
+        [Header("Events")]
         public UnityEvent leftButtonEvent;
         public UnityEvent rightButtonEvent;
         
         public override void Initialize()
         {
-            canvasGroup.alpha = 0;
+            canvasGroup.alpha = 1;
             
             leftButton.onClick.AddListener(
                 () => leftButtonEvent?.Invoke()
@@ -36,34 +34,11 @@ namespace UI.Views
 
         public override void Close()
         {
-            canvasGroup.alpha = 1;
+            canvasGroup.alpha = 0;
             
             leftButton.onClick.RemoveAllListeners();
             rightButton.onClick.RemoveAllListeners();
         }
-
-        #region Change Sprites Methods
-        public void ChangeBasePlayer(Sprite sprite)
-        {
-            basePlayer.sprite = sprite;
-        }
-        
-        public void ChangeOutPlayer(Sprite sprite)
-        {
-            outPlayer.sprite = sprite;
-        }
-        
-        public void ChangeHarPlayer(Sprite sprite)
-        {
-            harPlayer.sprite = sprite;
-        }
-        
-        public void ChangeHatPlayer(Sprite sprite)
-        {
-            hatPlayer.sprite = sprite;
-        }
-        #endregion
-        
         
     }
 }

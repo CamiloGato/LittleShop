@@ -1,6 +1,6 @@
-﻿using Items.Models;
-using UI.Components;
+﻿using UI.Components;
 using UI.Components.Pool;
+using UI.Models;
 using UI.Views;
 using UnityEngine;
 
@@ -22,7 +22,9 @@ namespace UI.Controllers
             _itemPool = new ComponentPool<ShopItemComponent>(shopItemComponentPrefab, sectionGroup);
         }
 
-        public void AddItem(ItemDataSO itemData)
+        #region Methods
+        
+        public void AddItem(ItemModel itemData)
         {
             ShopItemComponent item = _itemPool.Get();
             item.SetItem(itemData);
@@ -34,5 +36,7 @@ namespace UI.Controllers
             item.Close();
             _itemPool.ReturnToPool(item);
         }
+        
+        #endregion
     }
 }

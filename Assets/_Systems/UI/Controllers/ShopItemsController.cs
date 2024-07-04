@@ -3,6 +3,7 @@ using UI.Components.Pool;
 using UI.Models;
 using UI.Views;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace UI.Controllers
 {
@@ -13,6 +14,9 @@ namespace UI.Controllers
         
         [Header("Section Group")]
         [SerializeField] private RectTransform sectionGroup;
+        
+        [Header("Events")] [Space]
+        public UnityEvent<ShopItemComponent> selectedItemEvent;
         
         private ComponentPool<ShopItemComponent> _itemPool;
         
@@ -33,6 +37,7 @@ namespace UI.Controllers
         {
             ShopItemComponent item = _itemPool.Get();
             item.Initialize();
+            item.AddCallback(SelectedItem);
             item.SetItem(itemData);
         }
 
@@ -41,6 +46,12 @@ namespace UI.Controllers
             item.Close();
             _itemPool.ReturnToPool(item);
         }
+        
         #endregion
+        
+        private void SelectedItem(ShopItemComponent item)
+        {
+            selectedItemEvent?.Invoke(item);
+        }
     }
 }

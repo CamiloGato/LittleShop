@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
@@ -14,7 +15,7 @@ namespace UI.Views
         [SerializeField] private Button transactionButton;
         
         [Header("Texts")]
-        [SerializeField] private Text transactionText;
+        [SerializeField] private TMP_Text transactionText;
         
         public UnityEvent backButtonEvent;
         public UnityEvent transactionButtonEvent;

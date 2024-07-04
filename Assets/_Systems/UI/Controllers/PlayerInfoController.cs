@@ -17,6 +17,8 @@ namespace UI.Controllers
         [SerializeField] private MoneyDifferenceComponent moneyDifferenceComponent;
         [SerializeField] private RectTransform sectionGroup;
         
+        [Header("Data")]
+        [SerializeField] private TimeImageModel timeImage;
         
         [Header("Events")] [Space]
         [SerializeField] private UnityEvent<MoneyDifferenceComponent> finishAnimationEvent;
@@ -60,9 +62,16 @@ namespace UI.Controllers
             playerImageComponent.UpdatePlayerView(0);
         }
         
-        public void UpdateTimeState(TimeStateModel timeState)
+        public void UpdateTimeState(float time)
         {
-            timeStampComponent.UpdateTime(timeState);
+            int hours = (int) time / 60;
+            int minutes = (int) time % 60;
+
+            Sprite skySprite = hours < 12 ? timeImage.skyDaySprite : timeImage.skyNightSprite;
+            Sprite sunSprite = hours < 12 ? timeImage.sunDaySprite : timeImage.sunNightSprite;
+         
+            timeStampComponent.UpdateTime(hours, minutes);
+            timeStampComponent.UpdateTimeImage(skySprite, sunSprite);
         }
         
         public void UpdatePlayerInfo(PlayerInfoModel playerInfo)

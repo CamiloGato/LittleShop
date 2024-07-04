@@ -4,10 +4,11 @@ using UnityEngine;
 namespace UI.Models
 {
     [Serializable]
-    public class TimeStateModel
+    public class TimeImageModel
     {
-        public Sprite skySprite;
-        public Sprite sunSprite;
-        public float currentTime;
+        public Sprite skyDaySprite;
+        public Sprite sunDaySprite;
+        public Sprite skyNightSprite;
+        public Sprite sunNightSprite;
     }
 }

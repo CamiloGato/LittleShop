@@ -1,5 +1,4 @@
 ﻿using TMPro;
-using UI.Models;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,19 +15,15 @@ namespace UI.Components
 
         public override void Close() { }
 
-        public void UpdateTime(TimeStateModel timeState)
+        public void UpdateTimeImage(Sprite skySprite, Sprite sunSprite)
         {
-            skyImage.sprite = timeState.skySprite;
-            sunImage.sprite = timeState.sunSprite;
-            (int hours, int minutes) = GetTime(timeState.currentTime);
-            timeText.text = $"{hours}:{minutes}";
+            skyImage.sprite = skySprite;
+            sunImage.sprite = sunSprite;
         }
 
-        public (int, int) GetTime(float totalSeconds)
+        public void UpdateTime(int hours, int minutes)
         {
-            int hours = (int)totalSeconds / 3600;
-            int minutes = (int)(totalSeconds - hours * 3600) / 60;
-            return (hours, minutes);
+            timeText.text = $"{hours}:{minutes}";
         }
         
     }

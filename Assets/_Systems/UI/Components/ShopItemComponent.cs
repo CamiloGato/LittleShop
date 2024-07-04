@@ -16,7 +16,7 @@ namespace UI.Components
         [SerializeField] private TMP_Text itemDescription;
         
         private ItemModel _itemModel;
-        private UnityAction<ItemModel> _callback;
+        private UnityAction<ShopItemComponent> _callback;
         
         public override void Initialize()
         {
@@ -47,10 +47,10 @@ namespace UI.Components
         
         private void OnClick()
         {
-            _callback?.Invoke(_itemModel);
+            _callback?.Invoke(this);
         }
         
-        public void AddClickCallback(UnityAction<ItemModel> callback)
+        public void AddCallback(UnityAction<ShopItemComponent> callback)
         {
             _callback = callback;
         }

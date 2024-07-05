@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a7aaa326ed94bd08703d0ab980025b0, type: 3}
   m_Name: Out1
   m_EditorClassIdentifier: 
+  itemName: Cloth-Out1
+  icon: {fileID: -243861882, guid: 1c1ed3692073d1646a5010fc5e843a30, type: 3}
+  value: 840
+  description: Cloth description for Out1
   type: 1
   down: {fileID: -243861882, guid: 1c1ed3692073d1646a5010fc5e843a30, type: 3}
   up: {fileID: -1386665374, guid: 1c1ed3692073d1646a5010fc5e843a30, type: 3}

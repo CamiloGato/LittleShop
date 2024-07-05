@@ -13,12 +13,11 @@ namespace UI
         [SerializeField] private TopMenuController topMenuController;
         [SerializeField] private SideMenuController sideMenuController;
         [SerializeField] private PopUpController popUpController;
-
-        [SerializeField] private List<ItemModelSo> items;
         
         private void OnEnable()
         {
             Initialize();
+            CloseView();
         }
 
         private void OnDisable()
@@ -32,8 +31,6 @@ namespace UI
             topMenuController.Initialize();
             sideMenuController.Initialize();
             popUpController.Initialize();
-            
-            itemManagementController.AddItem(items);
         }
 
         public void Close()
@@ -44,15 +41,35 @@ namespace UI
             popUpController.Close();
         }
 
+        public void CloseView()
+        {
+            itemManagementController.Close();
+            sideMenuController.Close();
+            popUpController.Close();
+        }
+
         public void OpenShop(List<ItemModelSo> items, UnityAction<List<ItemModelSo>> callback)
         {
+            sideMenuController.Initialize();
+            sideMenuController.SetButtonText("Buy", "Back");
+            sideMenuController.AddButtonsCallback(
+                () =>
+                {
+                    // TODO: Buy
+                },
+                CloseView
+            );
+            
+            itemManagementController.Initialize();
             itemManagementController.SetUp("Shop");
             itemManagementController.AddItem(items);
-            itemManagementController.AddCallback((item) =>
-            {
-                List<ItemModelSo> selectedItems = itemManagementController.SelectedItemsModels;
-                callback?.Invoke(selectedItems);
-            });
+            itemManagementController.AddSelectedItemCallback(
+                item =>
+                {
+                    List<ItemModelSo> selectedItems = itemManagementController.SelectedItemsModels;
+                    callback?.Invoke(selectedItems);
+                }
+            );
         }
 
         public void OpenInventory(List<ItemModelSo> items)
@@ -65,7 +82,7 @@ namespace UI
         {
             itemManagementController.SetUp("Sell");
             itemManagementController.AddItem(items);
-            itemManagementController.AddCallback((item) =>
+            itemManagementController.AddSelectedItemCallback((item) =>
             {
                 List<ItemModelSo> selectedItems = itemManagementController.SelectedItemsModels;
                 callback?.Invoke(selectedItems);

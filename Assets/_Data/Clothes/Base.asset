@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a7aaa326ed94bd08703d0ab980025b0, type: 3}
   m_Name: Base
   m_EditorClassIdentifier: 
+  itemName: Cloth-Base
+  icon: {fileID: 2080604489, guid: b10a781606fef2540abbf4adf4d58928, type: 3}
+  value: 266
+  description: Cloth description for Base
   type: 0
   down: {fileID: 2080604489, guid: b10a781606fef2540abbf4adf4d58928, type: 3}
   up: {fileID: -1973467742, guid: b10a781606fef2540abbf4adf4d58928, type: 3}

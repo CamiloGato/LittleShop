@@ -12,8 +12,9 @@ namespace UI.Models
     }
     
     [CreateAssetMenu(menuName = "Item/Create Cloth", fileName = "ClothModelSo", order = 0)]
-    public class ClothModelSo : ScriptableObject
+    public class ClothModelSo : ItemModelSo
     {
+        [Header("Cloth")]
         public ClothType type;
         public Sprite down;
         public Sprite up;
@@ -51,6 +52,11 @@ namespace UI.Models
             up = SpriteLoader.LoadSprite(path, fileName, 8);
             left = SpriteLoader.LoadSprite(path, fileName, 24);
             right = SpriteLoader.LoadSprite(path, fileName, 16);
+
+            itemName = $"Cloth-{name}";
+            value = Random.Range(200, 1000);
+            icon = down;
+            description = $"Cloth description for {name}";
         }
         #endif
         

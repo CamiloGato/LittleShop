@@ -1,7 +1,7 @@
 ﻿using UI.Models;
 using UnityEngine;
 
-namespace Timer
+namespace Manager
 {
     public class TimeManager : MonoBehaviour
     {

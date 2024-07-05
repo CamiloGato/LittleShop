@@ -17,13 +17,12 @@ namespace UI.Controllers
         [SerializeField] private ItemComponent itemComponentPrefab;
         
         [Header("Events")]
-        private UnityEvent<ItemComponent> _selectedItemEvent;
-
-        /// Item Pool
+        private UnityEvent<ItemModelSo> _selectedItemEvent;
+        
         private ComponentPool<ItemComponent> _itemPool;
         
-        private List<ItemComponent> _selectedItems = new();
-        public List<ItemModelSo> SelectedItemsModels => _selectedItems.ConvertAll(item => item.ItemModel);
+        [SerializeField] private List<ItemComponent> selectedItems = new List<ItemComponent>();
+        public List<ItemModelSo> SelectedItemsModels => selectedItems.ConvertAll(item => item.ItemModel);
 
         public override void Initialize()
         {
@@ -42,12 +41,12 @@ namespace UI.Controllers
         private void InitializeComponents()
         {
             _itemPool = new ComponentPool<ItemComponent>(itemComponentPrefab, sectionGroup);
-            _selectedItems = new List<ItemComponent>();
+            selectedItems = new List<ItemComponent>();
         }
 
         private void InitializeEvents()
         {
-            _selectedItemEvent = new UnityEvent<ItemComponent>();
+            _selectedItemEvent = new UnityEvent<ItemModelSo>();
         }
 
         public void SetUp(string title)
@@ -55,7 +54,7 @@ namespace UI.Controllers
             baseView.SetTitle(title);
         }
 
-        public void AddCallback(UnityAction<ItemComponent> callback)
+        public void AddSelectedItemCallback(UnityAction<ItemModelSo> callback)
         {
             _selectedItemEvent.AddListener(callback);
         }
@@ -78,41 +77,40 @@ namespace UI.Controllers
 
         public void RemoveItem(ItemComponent item)
         {
-            if (_selectedItems.Contains(item))
+            if (selectedItems.Contains(item))
             {
-                _selectedItems.Remove(item);
+                selectedItems.Remove(item);
             }
             
             item.Close();
             _itemPool.ReturnToPool(item);
         }
 
-        public void UpdateList()
+        public void UpdateList(int amount)
         {
             foreach (var item in _itemPool.ActivePool)
             {
-                // TODO: Show Available Item
-                item.ButtonStatus(1 > item.ItemModel.value);
+                item.ButtonStatus(amount > item.ItemModel.value);
             }
         }
 
         private void SelectedItem(ItemComponent item)
         {
             CheckSelectedItem(item);
-            _selectedItemEvent?.Invoke(item);
+            _selectedItemEvent?.Invoke(item.ItemModel);
         }
 
         private void CheckSelectedItem(ItemComponent item)
         {
-            bool isSelected = _selectedItems.Contains(item);
+            bool isSelected = selectedItems.Contains(item);
 
             if (!isSelected)
             {
-                _selectedItems.Add(item);
+                selectedItems.Add(item);
             }
             else
             {
-                _selectedItems.Remove(item);
+                selectedItems.Remove(item);
             }
             
             item.SetSelected(!isSelected);

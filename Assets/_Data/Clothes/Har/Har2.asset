@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a7aaa326ed94bd08703d0ab980025b0, type: 3}
   m_Name: Har2
   m_EditorClassIdentifier: 
+  itemName: Cloth-Har2
+  icon: {fileID: 1435568050, guid: 5108c1d6b061bc84fb54bf7664dad112, type: 3}
+  value: 848
+  description: Cloth description for Har2
   type: 2
   down: {fileID: 1435568050, guid: 5108c1d6b061bc84fb54bf7664dad112, type: 3}
   up: {fileID: -1729379268, guid: 5108c1d6b061bc84fb54bf7664dad112, type: 3}

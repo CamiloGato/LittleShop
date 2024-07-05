@@ -1,4 +1,4 @@
-﻿using Timer;
+﻿using Manager;
 using UI.Models;
 
 namespace Shop.Economy

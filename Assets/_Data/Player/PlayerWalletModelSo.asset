@@ -15,5 +15,9 @@ MonoBehaviour:
   onWalletMoneyChanged:
     m_PersistentCalls:
       m_Calls: []
-  walletName: Billetera E Camilo
-  walletMoney: 0
+  onTradeHistoryChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  walletAddress: 
+  walletMoney: 100
+  tradeHistory: []

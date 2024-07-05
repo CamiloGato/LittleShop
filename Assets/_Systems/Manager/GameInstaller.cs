@@ -15,11 +15,18 @@ namespace Manager
         [SerializeField] private UIFacade uiFacade;
         [SerializeField] private TimeManager timeManager;
         
+        [SerializeField] private PlayerInfoModelSo playerInfoModel;
+        
         public List<ItemModelSo> items;
         
         private void Awake()
         {
             RegisterShopServices();
+        }
+
+        private void Start()
+        {
+            playerInfoModel.playerWalletModel.SetBalance(100000);
         }
 
         private void RegisterShopServices()
@@ -28,20 +35,7 @@ namespace Manager
             ShopServiceLocator.Instance.Register<IInventoryService>(new EntityInventoryService());
             ShopServiceLocator.Instance.Register<TradeService>(new TradeService());
         }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                uiFacade.Close();
-            }
-            
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                uiFacade.OpenShop(items, OnShop);
-            }
-        }
-
+        
         private void OnShop(List<ItemModelSo> listItems)
         {
             foreach (ItemModelSo itemModelSo in listItems)

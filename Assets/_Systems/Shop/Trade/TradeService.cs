@@ -29,14 +29,24 @@ namespace Shop.Trade
             return false;
         }
 
-        public bool Trade(TradeEntity from, TradeEntity to, List<ItemModelSo> items)
+        public TradeHistory Trade(TradeEntity from, TradeEntity to, List<ItemModelSo> items)
         {
             foreach (ItemModelSo item in items)
             {
-                if (!Trade(from, to, item)) return false;
+                if (!Trade(from, to, item)) return null;
             }
+
+            TradeHistory history = new TradeHistory()
+            {
+                fromWallet = from.playerInfoModel.playerWalletModel,
+                toWallet = to.playerInfoModel.playerWalletModel,
+                items = items
+            };
             
-            return true;
+            from.playerInfoModel.playerWalletModel.AddTradeHistory(history);
+            to.playerInfoModel.playerWalletModel.AddTradeHistory(history);
+            
+            return history;
         }
     }
 }

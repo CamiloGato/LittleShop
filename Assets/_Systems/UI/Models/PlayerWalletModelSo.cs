@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using Shop.Trade;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace UI.Models
@@ -7,9 +10,11 @@ namespace UI.Models
     public class PlayerWalletModelSo : ScriptableObject
     {
         public UnityEvent<int> onWalletMoneyChanged;
+        public UnityEvent<TradeHistory, string> onTradeHistoryChanged;
         
         [SerializeField] private string walletAddress;
         [SerializeField] private int walletMoney;
+        [SerializeField] private List<TradeHistory> tradeHistory;
 
         public void SetBalance(int balance)
         {
@@ -33,5 +38,20 @@ namespace UI.Models
         {
             return walletMoney >= amount;
         }
+        
+        public void AddTradeHistory(TradeHistory history)
+        {
+            string boughtOrSold = history.fromWallet == this ? "Bought" : "Sold";
+            tradeHistory.Add(history);
+            onTradeHistoryChanged?.Invoke(history, boughtOrSold);
+        }
+        
+        #if UNITY_EDITOR
+        private void OnValidate()
+        {
+            onWalletMoneyChanged.Invoke(walletMoney);
+        }
+        #endif
+        
     }
 }

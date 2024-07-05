@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Shop;
 using UI;
 using UI.Models;
@@ -14,7 +15,7 @@ namespace Playable.Interactions
         private List<ItemModelSo> _itemsSelected = new List<ItemModelSo>();
         
         private UIFacade _uiFacade;
-        
+
         public void OnInteraction(Player.Player player)
         {
             _uiFacade = ShopServiceLocator.Instance.Get<UIFacade>();

@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace UI.Models
 {
+    [CreateAssetMenu(menuName = "Icon/Create Icon Config", fileName = "IconConfigSo", order = 0)]
     public class IconConfigSo : ScriptableObject
     {
         [SerializeField] private List<IconModelSo> icons;

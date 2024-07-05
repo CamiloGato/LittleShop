@@ -64,7 +64,7 @@ namespace Playable.Player
             Ray ray = _mainCamera.ScreenPointToRay(mousePosition);
             RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
 
-            if (hit.collider != null)
+            if (hit.collider)
             {
                 IInteractable interactable = hit.collider.GetComponent<IInteractable>();
                 if (interactable != null)

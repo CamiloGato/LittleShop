@@ -17,6 +17,14 @@ namespace UI.Models
         {
             items.Add(item);
         }
+        
+        public void AddItem(List<ItemModelSo> listItems)
+        {
+            foreach (ItemModelSo item in listItems)
+            {
+                AddItem(item);
+            }
+        }
 
         public void RemoveItem(ItemModelSo item)
         {

@@ -11,7 +11,6 @@ namespace Playable.Interactions
     {
         [SerializeField] private Store store;
         
-        
         private UIFacade _uiFacade;
         private List<ItemModelSo> _itemsSelected = new List<ItemModelSo>();
         private Player.Player _player;
@@ -28,6 +27,8 @@ namespace Playable.Interactions
         private void OnBuy()
         {
             TradeService tradingService = ShopServiceLocator.Instance.Get<TradeService>();
+            // Before buying, we need to fill the items to buy | Unlimited Store Items
+            store.FillItemsToBuy();
             TradeHistory success = tradingService.Trade(store, _player, _itemsSelected);
             if (success != null)
             {

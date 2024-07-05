@@ -8,7 +8,7 @@ namespace UI.Models
     {
         public UnityEvent<int> onWalletMoneyChanged;
         
-        [SerializeField] private string walletName;
+        [SerializeField] private string walletAddress;
         [SerializeField] private int walletMoney;
 
         public void SetBalance(int balance)

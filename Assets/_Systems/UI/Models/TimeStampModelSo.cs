@@ -55,9 +55,11 @@ namespace UI.Models
         [SerializeField] private TimeSkyList timeSkyList;
         [Range(0, 1440)]
         [SerializeField] private float currentTime;
-
+        public float MaxTime => 1440;
+        
         private bool _isInitialized;
         private int _currentHours, _currentMinutes;
+        public string TimeString => $"{_currentHours:00}:{_currentMinutes:00}";
         public float CurrentTime
         {
             get => currentTime;

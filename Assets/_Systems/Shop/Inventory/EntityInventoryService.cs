@@ -2,7 +2,7 @@
 
 namespace Shop.Inventory
 {
-    public class InventoryService
+    public class EntityInventoryService : IInventoryService
     {
         public bool ReplaceItem(PlayerInventoryModelSo from, PlayerInventoryModelSo to, ItemModelSo item)
         {

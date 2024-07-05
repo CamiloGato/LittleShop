@@ -6,6 +6,6 @@ namespace Shop.Items
     public class ItemMetaData
     {
         public string name;
-        public int price;
+        public int value;
     }
 }

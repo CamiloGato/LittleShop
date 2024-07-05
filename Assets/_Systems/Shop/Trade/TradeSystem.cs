@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using Shop.Economy;
 using Shop.Inventory;
 using Shop.Items;
+using Shop.Mappers;
 using UI;
+using UI.Models;
 using UnityEngine;
 
 namespace Shop.Trade
@@ -43,15 +45,18 @@ namespace Shop.Trade
 
         public void TradeWith(TradeEntity from, TradeEntity tradeTo)
         {
+            List<ItemModel> items = tradeTo.inventoryDataSo.items.MapToItemModel();
+            
             uiFacade.OpenShopPanel(
                 from.walletDataSo.walletMoney,
-                tradeTo.inventoryDataSo.items,
-                () =>
+                items,
+                selectedItems =>
                 {
-                    
+                    List<ItemMetaData> tradeItems = selectedItems.MetaDataFrom(tradeTo.inventoryDataSo.items);
+                    inventorySystem.TradeItem(from.inventoryDataSo, tradeTo.inventoryDataSo, tradeItems);
+                    uiFacade.UpdateMenuPanel();
                 }
             );
         }
-        
     }
 }

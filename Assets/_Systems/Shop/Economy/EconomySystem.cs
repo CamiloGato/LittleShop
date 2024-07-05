@@ -19,7 +19,7 @@ namespace Shop.Economy
             var totalTransfer = 0;
             foreach (ItemMetaData itemMetaData in items)
             {
-                totalTransfer += TransferMoney(from, to, itemMetaData.price);
+                totalTransfer += TransferMoney(from, to, itemMetaData.value);
             }
             
             return totalTransfer;

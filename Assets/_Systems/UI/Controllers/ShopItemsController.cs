@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UI.Components;
 using UI.Components.Pool;
 using UI.Models;
@@ -22,6 +23,7 @@ namespace UI.Controllers
         private ComponentPool<ShopItemComponent> _itemPool;
         
         private List<ShopItemComponent> _selectedItems = new List<ShopItemComponent>();
+        public List<ItemModel> SelectedItems => _selectedItems.Select(item => item.ItemModel).ToList();
         private int _amount;
         
         

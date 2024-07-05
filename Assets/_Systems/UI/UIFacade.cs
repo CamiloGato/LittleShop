@@ -151,7 +151,7 @@ namespace UI
             playerInfoController.UpdatePlayerInfo(playerInfoModel);
         }
         
-        public void OpenShopPanel(int amount, List<ItemModel> items, UnityAction callback)
+        public void OpenShopPanel(int amount, List<ItemModel> items, UnityAction<List<ItemModel>> callback)
         {
             playerRenderController.Initialize();
             shopItemsController.Initialize();
@@ -165,7 +165,8 @@ namespace UI
             shopTransactionController.AddCallbackTransactionButton(
                 () =>
                 {
-                    callback?.Invoke();
+                    List<ItemModel> selectedItems = shopItemsController.SelectedItems;
+                    callback?.Invoke(selectedItems);
                     UpdateMenuPanel();
                 }
             );

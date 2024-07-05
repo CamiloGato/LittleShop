@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac882a699bac453ab481f3ab684f5661, type: 3}
   m_Name: ItemModelSo
   m_EditorClassIdentifier: 
-  itemName: 
-  icon: {fileID: 0}
-  value: 0
-  description: 
+  itemName: ItemRandom
+  icon: {fileID: 1435334574, guid: 85fd9bb096cb772469b80b5167fdf97a, type: 3}
+  value: 100
+  description: item random

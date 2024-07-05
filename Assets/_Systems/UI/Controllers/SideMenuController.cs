@@ -33,7 +33,7 @@ namespace UI.Controllers
         {
             _currentLook = 0;
             playerImageComponent.Initialize();
-            playerImageComponent.SetPlayerCloth(playerClothesModel.clothes);
+            playerImageComponent.SetUpPlayer(playerClothesModel.clothes, playerClothesModel.item);
         }
 
         private void InitializeEvents()

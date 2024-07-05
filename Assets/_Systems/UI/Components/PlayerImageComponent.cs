@@ -16,22 +16,32 @@ namespace UI.Components
         [SerializeField] private Image itemPlayer;
 
         private int _playerLook;
+        private List<ClothModelSo> _playerClothesModelSo;
         
         public override void Initialize() { }
 
         public override void Close() { }
 
-        public void SetPlayerCloth(List<ClothModelSo> playerClothesModelSo)
+        public void SetUpPlayer(List<ClothModelSo> playerClothesModelSo, ItemModelSo itemModelSo)
         {
-            foreach (ClothModelSo cloth in playerClothesModelSo)
-            {
-                UpdatePlayerCloth(cloth);
-            }
+            _playerClothesModelSo = playerClothesModelSo;
+            UpdatePlayerCloths(playerClothesModelSo);
+            UpdatePlayerItem(itemModelSo);
         }
         
         public void UpdatePlayerView(int viewLook)
         {
-            _playerLook = viewLook;
+            _playerLook = viewLook;;
+            UpdatePlayerCloths(_playerClothesModelSo);
+        }
+        
+        public void UpdatePlayerCloths(List<ClothModelSo> playerClothesModelSo)
+        {
+            _playerClothesModelSo = playerClothesModelSo;
+            foreach (ClothModelSo cloth in playerClothesModelSo)
+            {
+                UpdatePlayerCloth(cloth);
+            }
         }
         
         public void UpdatePlayerCloth(ClothModelSo cloth)

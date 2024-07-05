@@ -6,7 +6,7 @@ namespace UI.Components.Pool
     public class ComponentPool<T> where T : BaseComponent
     {
         private readonly Queue<T> _pool = new Queue<T>();
-        private readonly HashSet<T> _activePool = new HashSet<T>();
+        private readonly List<T> _activePool = new List<T>();
         private readonly T _prefab;
         private readonly Transform _parentTransform;
 

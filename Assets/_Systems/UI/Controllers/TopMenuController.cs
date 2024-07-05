@@ -32,6 +32,8 @@ namespace UI.Controllers
             base.Initialize();
             InitializeComponents();
             InitializeEvents();
+            
+            UpdatePlayerInfo(playerInfoModel.PlayerName, playerInfoModel.PlayerMoney);
         }
 
         public override void Close()
@@ -54,8 +56,8 @@ namespace UI.Controllers
         private void InitializeEvents()
         {
             finishAnimationEvent = new UnityEvent<MoneyDifferenceComponent>();
-            
             finishAnimationEvent.AddListener(FinishAnimation);
+            
             playerInfoModel.onPlayerInfoChanged.AddListener(UpdatePlayerInfo);
             timeStampModel.onTimeChange.AddListener(UpdateTime);
             timeStampModel.onTimeSkyChange.AddListener(UpdateTimeSky);

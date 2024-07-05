@@ -30,6 +30,13 @@ namespace UI
             topMenuController.Initialize();
             sideMenuController.Initialize();
             popUpController.Initialize();
+            
+            popUpController.AddPopUp(new PopUpModel()
+            {
+                title = "Welcome",
+                description = "Welcome to Little Shop",
+                icon = null
+            });
         }
 
         public void Close()

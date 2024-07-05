@@ -39,7 +39,7 @@ namespace UI.Components
         
         #region Animation Methods
         
-        public void FinishAnimation()
+        public void TurnOff()
         {
             _callback?.Invoke(this);
         }

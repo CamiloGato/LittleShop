@@ -15,5 +15,5 @@ MonoBehaviour:
   onPlayerInfoChanged:
     m_PersistentCalls:
       m_Calls: []
-  playerName: Juan
-  playerMoney: 50000
+  playerName: Pedro
+  playerMoney: 100

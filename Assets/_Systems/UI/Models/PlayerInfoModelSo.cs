@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace UI.Models
@@ -30,5 +31,14 @@ namespace UI.Models
                 onPlayerInfoChanged?.Invoke(playerName, playerMoney);
             }
         }
+        
+        #if UNITY_EDITOR
+
+        public void OnValidate()
+        {
+            onPlayerInfoChanged.Invoke(playerName, playerMoney);
+        }
+
+#endif
     }
 }

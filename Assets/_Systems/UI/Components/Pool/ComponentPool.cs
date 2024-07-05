@@ -10,7 +10,7 @@ namespace UI.Components.Pool
         private readonly T _prefab;
         private readonly Transform _parentTransform;
 
-        public IEnumerator<T> ActivePool => _activePool.GetEnumerator();
+        public IEnumerable<T> ActivePool => _activePool;
         
         public ComponentPool(T prefab, Transform parentTransform, int initialCount = 10)
         {

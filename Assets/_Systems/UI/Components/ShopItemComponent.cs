@@ -14,6 +14,7 @@ namespace UI.Components
         [SerializeField] private TMP_Text itemName;
         [SerializeField] private TMP_Text itemValue;
         [SerializeField] private TMP_Text itemDescription;
+        [SerializeField] private Image selectedImage;
         
         private ItemModel _itemModel;
         public ItemModel ItemModel => _itemModel;
@@ -45,6 +46,16 @@ namespace UI.Components
             itemName.text = _itemModel.name;
             itemValue.text = _itemModel.value.ToString();
             itemDescription.text = _itemModel.description;
+        }
+        
+        public void SetSelected(bool selected)
+        {
+            selectedImage.gameObject.SetActive(selected);
+        }
+        
+        public void ButtonStatus(bool active)
+        {
+            button.interactable = active;
         }
         
         private void OnClick()

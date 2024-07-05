@@ -1,4 +1,5 @@
-﻿using UI.Components;
+﻿using System.Collections.Generic;
+using UI.Components;
 using UI.Components.Pool;
 using UI.Models;
 using UI.Views;
@@ -20,10 +21,15 @@ namespace UI.Controllers
         
         private ComponentPool<ShopItemComponent> _itemPool;
         
+        private List<ShopItemComponent> _selectedItems = new List<ShopItemComponent>();
+        private int _amount;
+        
+        
         public override void Initialize()
         {
             base.Initialize();
             _itemPool = new ComponentPool<ShopItemComponent>(shopItemComponentPrefab, sectionGroup);
+            _selectedItems = new List<ShopItemComponent>();
         }
 
         public override void Close()
@@ -35,9 +41,10 @@ namespace UI.Controllers
         }
         
         #region Methods
-        public void SetTitle(string title)
+        public void SetUp(string title, int amount)
         {
             baseView.SetTitle(title);
+            _amount = amount;
         }
         
         public void AddItem(ItemModel itemData)
@@ -48,22 +55,44 @@ namespace UI.Controllers
             item.SetItem(itemData);
         }
 
+        public void AddItem(List<ItemModel> items)
+        {
+            foreach (ItemModel itemData in items)
+            {
+                AddItem(itemData);
+            }
+        }
+        
         public void RemoveItem(ShopItemComponent item)
         {
             item.Close();
             _itemPool.ReturnToPool(item);
         }
-        
-        public void AddCallbackSelectedItem(UnityAction<ShopItemComponent> callback)
+
+        public void UpdateList()
         {
-            selectedItemEvent.AddListener(callback);
+            foreach (ShopItemComponent item in _itemPool.ActivePool)
+            {
+                item.ButtonStatus(_amount > item.ItemModel.value);
+            }
         }
         
         #endregion
         
         private void SelectedItem(ShopItemComponent item)
         {
+            CheckSelectedItem(item);
             selectedItemEvent?.Invoke(item);
+        }
+
+        private void CheckSelectedItem(ShopItemComponent item)
+        {
+            bool isSelected = _selectedItems.Contains(item);
+            item.SetSelected(isSelected);
+            
+            _amount = isSelected 
+                ? _amount - item.ItemModel.value
+                : _amount + item.ItemModel.value;
         }
     }
 }

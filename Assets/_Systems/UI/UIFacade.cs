@@ -1,7 +1,10 @@
-﻿using UI.Components;
+﻿using System.Collections.Generic;
+using UI.Components;
 using UI.Controllers;
+using UI.Icon;
 using UI.Models;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace UI
 {
@@ -14,6 +17,9 @@ namespace UI
         [SerializeField] private ShopItemsController shopItemsController;
         [SerializeField] private ShopTransactionController shopTransactionController;
         [Space]
+        
+        [Header("Configurations")]
+        [SerializeField] private IconDataBaseSo iconDataBaseSo;
         
         [Header("Data")]
         [SerializeField] private PlayerImageModel playerImageModel;
@@ -41,6 +47,10 @@ namespace UI
             shopItemsController.Initialize();
             shopTransactionController.Initialize();
             
+            playerRenderController.Close();
+            shopItemsController.Close();
+            shopTransactionController.Close();
+            
             shopItemsController.selectedItemEvent.AddListener(OnShopItemSelected);
         }
 
@@ -51,6 +61,8 @@ namespace UI
             popUpController.Close();
             shopItemsController.Close();
             shopTransactionController.Close();
+
+            shopItemsController.selectedItemEvent.RemoveListener(OnShopItemSelected);
         }
         
         #region Methods
@@ -84,9 +96,17 @@ namespace UI
         }
         
         [ContextMenu("Add Pop Up")]
-        public void AddPopUp()
+        public void AddPopUp(string title, string message, string iconName)
         {
-            popUpController.AddPopUp(popUpModel);
+            Sprite icon = iconDataBaseSo.GetIcon(iconName);
+            
+            PopUpModel model = new PopUpModel()
+            {
+                title = title,
+                description = message,
+                icon = icon
+            };
+            popUpController.AddPopUp(model);
         }
         
         [ContextMenu("Add Shop Item")]
@@ -117,6 +137,46 @@ namespace UI
         public void RemoveItem(ShopItemComponent itemComponent)
         {
             shopItemsController.RemoveItem(itemComponent);
+        }
+        
+        #endregion
+        
+        
+        #region Panels
+
+        public void UpdateMenuPanel()
+        {
+            playerInfoController.UpdatePlayerView(playerImageModel);
+            playerInfoController.UpdateTime(time);
+            playerInfoController.UpdatePlayerInfo(playerInfoModel);
+        }
+        
+        public void OpenShopPanel(int amount, List<ItemModel> items, UnityAction callback)
+        {
+            playerRenderController.Initialize();
+            shopItemsController.Initialize();
+            shopTransactionController.Initialize();
+            
+            playerRenderController.UpdatePlayerView(playerImageModel);
+            shopItemsController.SetUp("Trade", amount);
+            shopItemsController.AddItem(items);
+            shopTransactionController.SetTransactionText("Buy");
+            
+            shopTransactionController.AddCallbackTransactionButton(
+                () =>
+                {
+                    callback?.Invoke();
+                    UpdateMenuPanel();
+                }
+            );
+            shopTransactionController.AddCallbackBackButton(CloseShopPanel);
+        }
+
+        public void CloseShopPanel()
+        {
+            playerRenderController.Close();
+            shopItemsController.Close();
+            shopTransactionController.Close();
         }
         
         #endregion

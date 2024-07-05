@@ -56,6 +56,7 @@ namespace UI.Models
         [Range(0, 1440)]
         [SerializeField] private float currentTime;
 
+        private bool _isInitialized;
         private int _currentHours, _currentMinutes;
         public float CurrentTime
         {
@@ -69,8 +70,9 @@ namespace UI.Models
 
                 if (hours == _currentHours && minutes == _currentMinutes) return;
                 
-                if (hours != _currentHours)
+                if (hours != _currentHours || !_isInitialized)
                 {
+                    _isInitialized = true;
                     var (skySprite, sunSprite) = timeSkyList.GetTimeSkySun(hours);
                     onTimeSkyChange?.Invoke(skySprite, sunSprite);
                 }

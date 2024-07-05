@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 namespace UI.Models
@@ -7,10 +6,12 @@ namespace UI.Models
     [CreateAssetMenu(menuName = "Player/Create Player Info", fileName = "PlayerInfoModelSo", order = 0)]
     public class PlayerInfoModelSo : ScriptableObject
     {
-        public UnityEvent<string, int> onPlayerInfoChanged;
+        public UnityEvent<string> onPlayerNameChanged;
+        
+        public PlayerWalletModelSo playerWalletModel;
+        public PlayerInventoryModelSo playerInventoryModel;
         
         [SerializeField] private string playerName;
-        [SerializeField] private int playerMoney;
         
         public string PlayerName
         {
@@ -18,17 +19,7 @@ namespace UI.Models
             set
             {
                 playerName = value;
-                onPlayerInfoChanged?.Invoke(playerName, playerMoney);
-            }
-        }
-
-        public int PlayerMoney
-        {
-            get => playerMoney;
-            set
-            {
-                playerMoney = value;
-                onPlayerInfoChanged?.Invoke(playerName, playerMoney);
+                onPlayerNameChanged?.Invoke(playerName);
             }
         }
         
@@ -36,7 +27,7 @@ namespace UI.Models
 
         public void OnValidate()
         {
-            onPlayerInfoChanged.Invoke(playerName, playerMoney);
+            onPlayerNameChanged.Invoke(playerName);
         }
 
 #endif

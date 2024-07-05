@@ -20,9 +20,13 @@ namespace UI.Views
             canvasGroup.alpha = 0;
         }
 
-        public void SetPlayerInfo(string playerName, int playerMoney)
+        public void SetPlayerName(string playerName)
         {
             playerNameText.text = playerName;
+        }
+        
+        public void SetPlayerMoney(int playerMoney)
+        {
             playerMoneyText.text = $"$ {playerMoney:N0}";
         }
     }

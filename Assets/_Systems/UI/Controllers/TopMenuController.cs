@@ -33,7 +33,7 @@ namespace UI.Controllers
             InitializeComponents();
             InitializeEvents();
             
-            UpdatePlayerInfo(playerInfoModel.PlayerName, playerInfoModel.PlayerMoney);
+            UpdatePlayerName(playerInfoModel.PlayerName);
         }
 
         public override void Close()
@@ -58,27 +58,17 @@ namespace UI.Controllers
             finishAnimationEvent = new UnityEvent<MoneyDifferenceComponent>();
             finishAnimationEvent.AddListener(FinishAnimation);
             
-            playerInfoModel.onPlayerInfoChanged.AddListener(UpdatePlayerInfo);
+            playerInfoModel.onPlayerNameChanged.AddListener(UpdatePlayerName);
+            playerInfoModel.playerWalletModel.onWalletMoneyChanged.AddListener(UpdateMoneyDifference);
             timeStampModel.onTimeChange.AddListener(UpdateTime);
             timeStampModel.onTimeSkyChange.AddListener(UpdateTimeSky);
         }
 
-        private void UpdatePlayerInfo(string playerName, int playerMoney)
+        private void UpdatePlayerName(string playerName)
         {
-            baseView.SetPlayerInfo(playerName, playerMoney);
-            UpdateMoneyDifference(playerMoney);
+            baseView.SetPlayerName(playerName);
         }
-
-        private void UpdateTime(int hours, int minutes)
-        {
-            timeStampComponent.UpdateTime(hours, minutes);
-        }
-
-        private void UpdateTimeSky(Sprite skySprite, Sprite sunSprite)
-        {
-            timeStampComponent.UpdateTimeSky(skySprite, sunSprite);
-        }
-
+        
         private void UpdateMoneyDifference(int newMoney)
         {
             int difference = newMoney - _currentMoney;
@@ -90,6 +80,16 @@ namespace UI.Controllers
             component.Initialize();
             component.SetCallback(finishAnimationEvent);
             component.SetDifference(difference);
+        }
+
+        private void UpdateTime(int hours, int minutes)
+        {
+            timeStampComponent.UpdateTime(hours, minutes);
+        }
+
+        private void UpdateTimeSky(Sprite skySprite, Sprite sunSprite)
+        {
+            timeStampComponent.UpdateTimeSky(skySprite, sunSprite);
         }
 
         private void FinishAnimation(MoneyDifferenceComponent data)

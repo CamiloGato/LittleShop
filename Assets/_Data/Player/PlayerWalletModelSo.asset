@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64d330bf5e9d494da63625f99067842d, type: 3}
-  m_Name: PlayerInfoModelSo
+  m_Script: {fileID: 11500000, guid: 19054261c6d0455ab0be014e0eb221d6, type: 3}
+  m_Name: PlayerWalletModelSo
   m_EditorClassIdentifier: 
-  onPlayerNameChanged:
+  onWalletMoneyChanged:
     m_PersistentCalls:
       m_Calls: []
-  playerWalletModel: {fileID: 11400000, guid: d1d2391077d6b3841a01657a6fb2bbef, type: 2}
-  playerInventoryModel: {fileID: 11400000, guid: 14c79110a5a937f4faee201d70e0503f, type: 2}
-  playerName: Pedro
+  walletName: Billetera E Camilo
+  walletMoney: 0

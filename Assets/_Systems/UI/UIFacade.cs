@@ -1,33 +1,18 @@
-﻿using System.Collections.Generic;
-using UI.Components;
-using UI.Controllers;
-using UI.Icon;
+﻿using UnityEngine;
 using UI.Models;
-using UnityEngine;
+using System.Collections.Generic;
+using UI.Controllers;
 using UnityEngine.Events;
 
 namespace UI
 {
     public class UIFacade : MonoBehaviour
     {
-        [Header("Controllers")]
-        [SerializeField] private PlayerInfoController playerInfoController;
-        [SerializeField] private PlayerRenderController playerRenderController;
+        [Header("Managers")]
+        [SerializeField] private ItemManagementController itemManagementController;
+        [SerializeField] private TopMenuController topMenuController;
+        [SerializeField] private SideMenuController sideMenuController;
         [SerializeField] private PopUpController popUpController;
-        [SerializeField] private ShopItemsController shopItemsController;
-        [SerializeField] private ShopTransactionController shopTransactionController;
-        [Space]
-        
-        [Header("Configurations")]
-        [SerializeField] private IconDataBaseSo iconDataBaseSo;
-        
-        [Header("Data")]
-        [SerializeField] private PlayerImageModel playerImageModel;
-        [SerializeField] private PlayerInfoModel playerInfoModel;
-        [SerializeField] private PopUpModel popUpModel;
-        [SerializeField] private ItemModel shopItemModel;
-        [SerializeField] private ClothModel shopClothModel;
-        [SerializeField] private float time;
 
         private void OnEnable()
         {
@@ -41,146 +26,58 @@ namespace UI
 
         public void Initialize()
         {
-            playerInfoController.Initialize();
-            playerRenderController.Initialize();
+            itemManagementController.Initialize();
+            topMenuController.Initialize();
+            sideMenuController.Initialize();
             popUpController.Initialize();
-            shopItemsController.Initialize();
-            shopTransactionController.Initialize();
-            
-            playerRenderController.Close();
-            shopItemsController.Close();
-            shopTransactionController.Close();
-            
-            shopItemsController.selectedItemEvent.AddListener(OnShopItemSelected);
         }
 
         public void Close()
         {
-            playerInfoController.Close();
-            playerRenderController.Close();
+            itemManagementController.Close();
+            topMenuController.Close();
+            sideMenuController.Close();
             popUpController.Close();
-            shopItemsController.Close();
-            shopTransactionController.Close();
+        }
 
-            shopItemsController.selectedItemEvent.RemoveListener(OnShopItemSelected);
+        public void OpenShop(List<ItemModelSo> items, UnityAction<List<ItemModelSo>> callback)
+        {
+            itemManagementController.SetUp("Shop");
+            itemManagementController.AddItem(items);
+            itemManagementController.selectedItemEvent.AddListener((item) =>
+            {
+                List<ItemModelSo> selectedItems = itemManagementController.SelectedItemsModels;
+                callback?.Invoke(selectedItems);
+            });
+        }
+
+        public void OpenInventory(List<ItemModelSo> items)
+        {
+            itemManagementController.SetUp("Inventory");
+            itemManagementController.AddItem(items);
+        }
+
+        public void OpenSell(List<ItemModelSo> items, UnityAction<List<ItemModelSo>> callback)
+        {
+            itemManagementController.SetUp("Sell");
+            itemManagementController.AddItem(items);
+            itemManagementController.selectedItemEvent.AddListener((item) =>
+            {
+                List<ItemModelSo> selectedItems = itemManagementController.SelectedItemsModels;
+                callback?.Invoke(selectedItems);
+            });
         }
         
-        #region Methods
-
-        /// <summary>
-        /// Update the player info view: UserName and Money
-        /// </summary>
-        [ContextMenu("Update Player Info")]
-        public void UpdatePlayerInfo()
+        public void ShowPopUp(string title, string message, Sprite icon)
         {
-            playerInfoController.UpdatePlayerInfo(playerInfoModel);
-        }
-
-        /// <summary>
-        /// Update the time view: Sky and Sun - Time
-        /// </summary>
-        [ContextMenu("Update Time")]
-        public void UpdateTime()
-        {
-            playerInfoController.UpdateTime(time);
-        }
-
-        /// <summary>
-        /// Update the player render view: PlayerImage
-        /// </summary>
-        [ContextMenu("Update Player Image")]
-        public void UpdatePlayerImage()
-        {
-            playerInfoController.UpdatePlayerView(playerImageModel);
-            playerRenderController.UpdatePlayerView(playerImageModel);
-        }
-        
-        [ContextMenu("Add Pop Up")]
-        public void AddPopUp(string title, string message, string iconName)
-        {
-            Sprite icon = iconDataBaseSo.GetIcon(iconName);
-            
             PopUpModel model = new PopUpModel()
             {
                 title = title,
                 description = message,
                 icon = icon
             };
+            
             popUpController.AddPopUp(model);
         }
-        
-        [ContextMenu("Add Shop Item")]
-        public void AddShopItem()
-        {
-            shopItemsController.AddItem(shopItemModel);
-        }
-        
-        [ContextMenu("Add Shop Cloth")]
-        public void AddShopCloth()
-        {
-            shopItemsController.AddItem(shopClothModel);
-        }
-        
-        private void OnShopItemSelected(ShopItemComponent itemComponent)
-        {
-            ItemModel itemModel = itemComponent.ItemModel;
-            if (itemModel is ClothModel clothModel)
-            {
-                playerRenderController.UpdatePlayerClothView(clothModel);
-            }
-            else
-            {
-                playerRenderController.UpdatePlayerItemView(itemComponent.ItemModel);
-            }
-        }
-
-        public void RemoveItem(ShopItemComponent itemComponent)
-        {
-            shopItemsController.RemoveItem(itemComponent);
-        }
-        
-        #endregion
-        
-        
-        #region Panels
-
-        public void UpdateMenuPanel()
-        {
-            playerInfoController.UpdatePlayerView(playerImageModel);
-            playerInfoController.UpdateTime(time);
-            playerInfoController.UpdatePlayerInfo(playerInfoModel);
-        }
-        
-        public void OpenShopPanel(int amount, List<ItemModel> items, UnityAction<List<ItemModel>> callback)
-        {
-            playerRenderController.Initialize();
-            shopItemsController.Initialize();
-            shopTransactionController.Initialize();
-            
-            playerRenderController.UpdatePlayerView(playerImageModel);
-            shopItemsController.SetUp("Trade", amount);
-            shopItemsController.AddItem(items);
-            shopTransactionController.SetTransactionText("Buy");
-            
-            shopTransactionController.AddCallbackTransactionButton(
-                () =>
-                {
-                    List<ItemModel> selectedItems = shopItemsController.SelectedItems;
-                    callback?.Invoke(selectedItems);
-                    UpdateMenuPanel();
-                }
-            );
-            shopTransactionController.AddCallbackBackButton(CloseShopPanel);
-        }
-
-        public void CloseShopPanel()
-        {
-            playerRenderController.Close();
-            shopItemsController.Close();
-            shopTransactionController.Close();
-        }
-        
-        #endregion
-        
     }
 }

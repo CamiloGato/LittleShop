@@ -1,5 +1,7 @@
-﻿using UI.Models;
+﻿using System.Collections.Generic;
+using UI.Models;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace UI.Components
@@ -12,47 +14,48 @@ namespace UI.Components
         [SerializeField] private Image harPlayer;
         [SerializeField] private Image hatPlayer;
         [SerializeField] private Image itemPlayer;
-        
-        [Header("Data")]
-        [SerializeField] private PlayerImageModel playerImageModel;
 
+        private int _playerLook;
+        
         public override void Initialize() { }
 
-        public override void Close()
+        public override void Close() { }
+
+        public void SetPlayerCloth(List<ClothModelSo> playerClothesModelSo)
         {
-            playerImageModel.CurrentLook = 0;
-            
-            basePlayer.sprite = null;
-            outPlayer.sprite = null;
-            harPlayer.sprite = null;
-            hatPlayer.sprite = null;
-            itemPlayer.sprite = null;
+            foreach (ClothModelSo cloth in playerClothesModelSo)
+            {
+                UpdatePlayerCloth(cloth);
+            }
         }
         
-        public void SetPlayerModel(PlayerImageModel playerModel)
+        public void UpdatePlayerView(int viewLook)
         {
-            playerImageModel = playerModel;
+            _playerLook = viewLook;
         }
         
-        public void UpdatePlayerView(int index)
+        public void UpdatePlayerCloth(ClothModelSo cloth)
         {
-            playerImageModel.CurrentLook = index;
-            
-            basePlayer.sprite = playerImageModel[ClothImageType.Base];
-            outPlayer.sprite = playerImageModel[ClothImageType.Out];
-            harPlayer.sprite = playerImageModel[ClothImageType.Har];
-            hatPlayer.sprite = playerImageModel[ClothImageType.Hat];
+            switch (cloth.type)
+            {
+                case ClothType.Base:
+                    basePlayer.sprite = cloth[_playerLook];
+                    break;
+                case ClothType.Out:
+                    outPlayer.sprite = cloth[_playerLook];
+                    break;
+                case ClothType.Har:
+                    harPlayer.sprite = cloth[_playerLook];
+                    break;
+                case ClothType.Hat:
+                    hatPlayer.sprite = cloth[_playerLook];
+                    break;
+            }
         }
         
-        public void UpdatePlayerItemView(ItemModel itemModel)
+        public void UpdatePlayerItem(ItemModelSo model)
         {
-            itemPlayer.sprite = itemModel.icon;
-        }
-        
-        public void UpdatePlayerClothView(ClothModel clothModel)
-        {
-            playerImageModel.ChangeClothLook(clothModel.clothImagePosture);
-            UpdatePlayerView(playerImageModel.CurrentLook);
+            itemPlayer.sprite = model.icon;
         }
 
     }

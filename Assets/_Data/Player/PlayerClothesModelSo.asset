@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8461678af7a54b40810374c9e950138b, type: 3}
+  m_Name: PlayerClothesModelSo
+  m_EditorClassIdentifier: 
+  onClothesChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onItemChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  clothes:
+  - {fileID: 11400000, guid: 87a6802cc24861840bd2cdd90d49bc4e, type: 2}
+  - {fileID: 11400000, guid: f65b37e72b96cb94b8fd4c5aca355073, type: 2}
+  - {fileID: 11400000, guid: 0e569fa2ecee8714fa327a01c491d7e7, type: 2}
+  - {fileID: 11400000, guid: 27757f270d0704d4baa66fa7ae51f73d, type: 2}
+  item: {fileID: 11400000, guid: 203b0399f8672164e95cc7e1384da435, type: 2}

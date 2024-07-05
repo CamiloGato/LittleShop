@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a7aaa326ed94bd08703d0ab980025b0, type: 3}
+  m_Name: Out2
+  m_EditorClassIdentifier: 
+  type: 1
+  down: {fileID: 1932943246, guid: c73b43eab5839034c941cf17aefa8fe7, type: 3}
+  up: {fileID: 352984326, guid: c73b43eab5839034c941cf17aefa8fe7, type: 3}
+  left: {fileID: 1959171216, guid: c73b43eab5839034c941cf17aefa8fe7, type: 3}
+  right: {fileID: 645052415, guid: c73b43eab5839034c941cf17aefa8fe7, type: 3}
+  path: Mana Seed Character/char_a_p1/1out/
+  fileName: char_a_p1_1out_fstr_v04

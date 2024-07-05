@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace UI.Components
 {
-    public class ShopItemComponent : BaseComponent
+    public class ItemComponent : BaseComponent
     {
         [Header("Item")]
         [SerializeField] private Button button;
@@ -16,10 +16,10 @@ namespace UI.Components
         [SerializeField] private TMP_Text itemDescription;
         [SerializeField] private Image selectedImage;
         
-        private ItemModel _itemModel;
-        public ItemModel ItemModel => _itemModel;
+        private ItemModelSo _itemModel;
+        public ItemModelSo ItemModel => _itemModel;
         
-        private UnityAction<ShopItemComponent> _callback;
+        private UnityAction<ItemComponent> _callback;
         
         public override void Initialize()
         {
@@ -38,12 +38,12 @@ namespace UI.Components
             button.onClick.RemoveAllListeners();
         }
 
-        public void SetItem(ItemModel itemModel)
+        public void SetItem(ItemModelSo itemModel)
         {
             _itemModel = itemModel;
             
             icon.sprite = _itemModel.icon;
-            itemName.text = _itemModel.name;
+            itemName.text = _itemModel.itemName;
             itemValue.text = _itemModel.value.ToString();
             itemDescription.text = _itemModel.description;
         }
@@ -63,7 +63,7 @@ namespace UI.Components
             _callback?.Invoke(this);
         }
         
-        public void AddCallback(UnityAction<ShopItemComponent> callback)
+        public void AddCallback(UnityAction<ItemComponent> callback)
         {
             _callback = callback;
         }

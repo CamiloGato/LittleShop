@@ -1,8 +1,8 @@
 ﻿using UI.Components;
 using UI.Components.Pool;
-using UI.Models;
-using UI.Views;
 using UnityEngine;
+using UI.Views;
+using UI.Models;
 using UnityEngine.Events;
 
 namespace UI.Controllers
@@ -11,43 +11,51 @@ namespace UI.Controllers
     {
         [Header("Components Prefab")]
         [SerializeField] private PopUpComponent popUpComponentPrefab;
-        
+
         [Header("Section Group")]
         [SerializeField] private RectTransform sectionGroup;
-        
-        [Header("Events")][Space]
+
+        [Header("Events")]
         [SerializeField] private UnityEvent<PopUpComponent> destroyPopUpEvent;
-        
+
         private ComponentPool<PopUpComponent> _popUpPool;
-        
+
         public override void Initialize()
         {
             base.Initialize();
-            _popUpPool = new ComponentPool<PopUpComponent>(popUpComponentPrefab, sectionGroup, 3);
-            destroyPopUpEvent = new UnityEvent<PopUpComponent>();
-            destroyPopUpEvent.AddListener(RemovePopUp);
+            InitializeComponents();
+            InitializeEvents();
         }
-        
+
         public override void Close()
         {
             base.Close();
             _popUpPool.Clear();
         }
-        
-        #region Methods
+
+        private void InitializeComponents()
+        {
+            _popUpPool = new ComponentPool<PopUpComponent>(popUpComponentPrefab, sectionGroup, 3);
+        }
+
+        private void InitializeEvents()
+        {
+            destroyPopUpEvent = new UnityEvent<PopUpComponent>();
+            destroyPopUpEvent.AddListener(RemovePopUp);
+        }
+
         public void AddPopUp(PopUpModel popUpData)
         {
-            PopUpComponent popUp = _popUpPool.Get();
+            var popUp = _popUpPool.Get();
             popUp.Initialize();
             popUp.SetCallback(destroyPopUpEvent);
             popUp.SetPopUp(popUpData);
         }
 
-        public void RemovePopUp(PopUpComponent popUp)
+        private void RemovePopUp(PopUpComponent popUp)
         {
             popUp.Close();
             _popUpPool.ReturnToPool(popUp);
         }
-        #endregion
     }
 }

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1479d63315984f7da1f8929fba041a17, type: 3}
+  m_Name: TimeImageModelSo
+  m_EditorClassIdentifier: 
+  onTimeChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onTimeSkyChange:
+    m_PersistentCalls:
+      m_Calls: []
+  timeSkyList:
+    timeSkySunModels:
+    - hourRise: 6
+      skySprite: {fileID: 1035571320, guid: dcf524f902651664187916b115e25d01, type: 3}
+      sunSprite: {fileID: 1583940722, guid: dcf524f902651664187916b115e25d01, type: 3}
+    - hourRise: 11
+      skySprite: {fileID: 688128856, guid: dcf524f902651664187916b115e25d01, type: 3}
+      sunSprite: {fileID: 1249945112, guid: dcf524f902651664187916b115e25d01, type: 3}
+    - hourRise: 16
+      skySprite: {fileID: 211806183, guid: dcf524f902651664187916b115e25d01, type: 3}
+      sunSprite: {fileID: -1932001902, guid: dcf524f902651664187916b115e25d01, type: 3}
+    - hourRise: 19
+      skySprite: {fileID: -486861275, guid: dcf524f902651664187916b115e25d01, type: 3}
+      sunSprite: {fileID: -112962454, guid: dcf524f902651664187916b115e25d01, type: 3}
+  currentTime: 0

@@ -1,8 +1,8 @@
-namespace Playable
+namespace Playable.Interact
 {
     public interface IInteractable
     {
-        void OnClick();
+        void OnClick(Player.Player player);
         void OnHoverEnter();
         void OnHoverExit();
     }

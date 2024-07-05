@@ -14,6 +14,9 @@ namespace UI
         [SerializeField] private SideMenuController sideMenuController;
         [SerializeField] private PopUpController popUpController;
         
+        [Header("Data")]
+        [SerializeField] private IconConfigSo iconConfig;
+        
         private void OnEnable()
         {
             Initialize();
@@ -33,7 +36,7 @@ namespace UI
             popUpController.Initialize();
         }
 
-        public void Close()
+        private void Close()
         {
             itemManagementController.Close();
             topMenuController.Close();
@@ -48,21 +51,26 @@ namespace UI
             popUpController.Close();
         }
 
-        public void OpenShop(List<ItemModelSo> items, UnityAction<List<ItemModelSo>> callback)
+        public void OpenShop(List<ItemModelSo> items, List<ItemModelSo> storeItems, UnityAction<List<ItemModelSo>> callback, UnityAction onClose, UnityAction onBuy)
         {
             sideMenuController.Initialize();
             sideMenuController.SetButtonText("Buy", "Back");
             sideMenuController.AddButtonsCallback(
                 () =>
                 {
-                    // TODO: Buy
+                    onBuy?.Invoke();
                 },
-                CloseView
+                () =>
+                {
+                    onClose?.Invoke();
+                    CloseView();
+                }
             );
             
             itemManagementController.Initialize();
             itemManagementController.SetUp("Shop");
             itemManagementController.AddItem(items);
+            itemManagementController.UpdateSelectedItems(storeItems);
             itemManagementController.AddSelectedItemCallback(
                 item =>
                 {
@@ -89,13 +97,14 @@ namespace UI
             });
         }
         
-        public void ShowPopUp(string title, string message, Sprite icon)
+        public void ShowPopUp(string title, string message, string icon)
         {
+            Sprite iconSprite = iconConfig.GetIcon(icon);
             PopUpModel model = new PopUpModel()
             {
                 title = title,
                 description = message,
-                icon = icon
+                icon = iconSprite
             };
             
             popUpController.AddPopUp(model);

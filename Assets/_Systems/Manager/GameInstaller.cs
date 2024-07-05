@@ -34,6 +34,7 @@ namespace Manager
             ShopServiceLocator.Instance.Register<IEconomyService>(new TransactionEconomyService());
             ShopServiceLocator.Instance.Register<IInventoryService>(new EntityInventoryService());
             ShopServiceLocator.Instance.Register<TradeService>(new TradeService());
+            ShopServiceLocator.Instance.Register<UIFacade>(uiFacade);
         }
         
         private void OnShop(List<ItemModelSo> listItems)

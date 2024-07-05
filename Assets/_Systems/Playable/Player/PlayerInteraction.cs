@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Playable.Interact;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Playable.Player
@@ -6,15 +7,18 @@ namespace Playable.Player
     public class PlayerInteraction : MonoBehaviour
     {
         public InputActionAsset inputActions;
+        
         private Camera _mainCamera;
         private InputAction _clickAction;
         private InputAction _hoverAction;
         private IInteractable _currentInteractable;
-
+        private Player _player;
+        
         private void Awake()
         {
             _mainCamera = Camera.main;
 
+            _player = GetComponent<Player>();
             var actionMap = inputActions.FindActionMap("Player", true);
             _clickAction = actionMap.FindAction("Click", true);
             _hoverAction = actionMap.FindAction("Point", true);
@@ -49,7 +53,7 @@ namespace Playable.Player
                 IInteractable interactable = hit.collider.GetComponent<IInteractable>();
                 if (interactable != null)
                 {
-                    interactable.OnClick();
+                    interactable.OnClick(_player);
                 }
             }
         }

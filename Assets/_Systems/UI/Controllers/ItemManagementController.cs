@@ -86,11 +86,16 @@ namespace UI.Controllers
             _itemPool.ReturnToPool(item);
         }
 
-        public void UpdateList(int amount)
+        public void UpdateSelectedItems(List<ItemModelSo> items)
         {
-            foreach (var item in _itemPool.ActivePool)
+            foreach (ItemComponent item in selectedItems)
             {
-                item.ButtonStatus(amount > item.ItemModel.value);
+                item.SetSelected(false);
+            }
+            
+            foreach (ItemModelSo itemData in items)
+            {
+                selectedItems.Find(item => item.ItemModel == itemData).SetSelected(true);
             }
         }
 

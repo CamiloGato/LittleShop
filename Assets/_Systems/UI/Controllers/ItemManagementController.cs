@@ -17,7 +17,7 @@ namespace UI.Controllers
         [SerializeField] private ItemComponent itemComponentPrefab;
         
         [Header("Events")]
-        public UnityEvent<ItemComponent> selectedItemEvent;
+        private UnityEvent<ItemComponent> _selectedItemEvent;
 
         /// Item Pool
         private ComponentPool<ItemComponent> _itemPool;
@@ -36,7 +36,7 @@ namespace UI.Controllers
         {
             base.Close();
             _itemPool.Clear();
-            selectedItemEvent.RemoveAllListeners();
+            _selectedItemEvent.RemoveAllListeners();
         }
 
         private void InitializeComponents()
@@ -47,7 +47,7 @@ namespace UI.Controllers
 
         private void InitializeEvents()
         {
-            selectedItemEvent = new UnityEvent<ItemComponent>();
+            _selectedItemEvent = new UnityEvent<ItemComponent>();
         }
 
         public void SetUp(string title)
@@ -55,6 +55,11 @@ namespace UI.Controllers
             baseView.SetTitle(title);
         }
 
+        public void AddCallback(UnityAction<ItemComponent> callback)
+        {
+            _selectedItemEvent.AddListener(callback);
+        }
+        
         public void AddItem(ItemModelSo itemData)
         {
             var item = _itemPool.Get();
@@ -73,6 +78,11 @@ namespace UI.Controllers
 
         public void RemoveItem(ItemComponent item)
         {
+            if (_selectedItems.Contains(item))
+            {
+                _selectedItems.Remove(item);
+            }
+            
             item.Close();
             _itemPool.ReturnToPool(item);
         }
@@ -81,6 +91,7 @@ namespace UI.Controllers
         {
             foreach (var item in _itemPool.ActivePool)
             {
+                // TODO: Show Available Item
                 item.ButtonStatus(1 > item.ItemModel.value);
             }
         }
@@ -88,13 +99,23 @@ namespace UI.Controllers
         private void SelectedItem(ItemComponent item)
         {
             CheckSelectedItem(item);
-            selectedItemEvent?.Invoke(item);
+            _selectedItemEvent?.Invoke(item);
         }
 
         private void CheckSelectedItem(ItemComponent item)
         {
             bool isSelected = _selectedItems.Contains(item);
-            item.SetSelected(isSelected);
+
+            if (!isSelected)
+            {
+                _selectedItems.Add(item);
+            }
+            else
+            {
+                _selectedItems.Remove(item);
+            }
+            
+            item.SetSelected(!isSelected);
         }
     }
 }

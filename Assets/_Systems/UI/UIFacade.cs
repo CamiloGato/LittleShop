@@ -14,6 +14,8 @@ namespace UI
         [SerializeField] private SideMenuController sideMenuController;
         [SerializeField] private PopUpController popUpController;
 
+        [SerializeField] private List<ItemModelSo> items;
+        
         private void OnEnable()
         {
             Initialize();
@@ -31,12 +33,7 @@ namespace UI
             sideMenuController.Initialize();
             popUpController.Initialize();
             
-            popUpController.AddPopUp(new PopUpModel()
-            {
-                title = "Welcome",
-                description = "Welcome to Little Shop",
-                icon = null
-            });
+            itemManagementController.AddItem(items);
         }
 
         public void Close()
@@ -51,7 +48,7 @@ namespace UI
         {
             itemManagementController.SetUp("Shop");
             itemManagementController.AddItem(items);
-            itemManagementController.selectedItemEvent.AddListener((item) =>
+            itemManagementController.AddCallback((item) =>
             {
                 List<ItemModelSo> selectedItems = itemManagementController.SelectedItemsModels;
                 callback?.Invoke(selectedItems);
@@ -68,7 +65,7 @@ namespace UI
         {
             itemManagementController.SetUp("Sell");
             itemManagementController.AddItem(items);
-            itemManagementController.selectedItemEvent.AddListener((item) =>
+            itemManagementController.AddCallback((item) =>
             {
                 List<ItemModelSo> selectedItems = itemManagementController.SelectedItemsModels;
                 callback?.Invoke(selectedItems);

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using _Tools;
+﻿using _Tools;
 using UnityEngine;
 
 namespace UI.Models

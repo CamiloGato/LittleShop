@@ -24,6 +24,8 @@ namespace UI.Components
         public override void Initialize()
         {
             button.onClick.AddListener(OnClick);
+            
+            SetSelected(false);
         }
         
         public override void Close()

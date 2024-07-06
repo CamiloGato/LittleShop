@@ -29,7 +29,7 @@ Tools such as Sprite Loader and Data Storage..
 
 Services and managers are stored on a Service Locator.
 
-**System Execution: **The GameInstaller serves as the starting point, registering essential services and configuring the user interface. Various interaction components allow players to interact with the store, select clothes, add items to the cart, and complete transactions. The UIFacade centralizes UI operations, displaying initial data and managing player interactions.
+**System Execution:** The GameInstaller serves as the starting point, registering essential services and configuring the user interface. Various interaction components allow players to interact with the store, select clothes, add items to the cart, and complete transactions. The UIFacade centralizes UI operations, displaying initial data and managing player interactions.
 
 
 **Development Process:**

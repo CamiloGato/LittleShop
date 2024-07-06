@@ -9315,6 +9315,7 @@ GameObject:
   - component: {fileID: 813764831}
   - component: {fileID: 813764834}
   - component: {fileID: 813764835}
+  - component: {fileID: 813764836}
   m_Layer: 0
   m_Name: Desk
   m_TagString: Untagged
@@ -9465,6 +9466,19 @@ MonoBehaviour:
   notificationText: Pay
   hoverColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   interactColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &813764836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813764830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64e449a24e314cada13ce8b2d7c9f2a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  store: {fileID: 813764834}
 --- !u!1 &1017985290
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e18e55d36acc4eeb83e1a88cea110539, type: 3}
   m_Name: IconModelSo2
   m_EditorClassIdentifier: 
-  iconName: Dos
-  icon: {fileID: -1827994023, guid: 85fd9bb096cb772469b80b5167fdf97a, type: 3}
+  iconName: shop
+  icon: {fileID: -331068422, guid: 85fd9bb096cb772469b80b5167fdf97a, type: 3}

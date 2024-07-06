@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UI.Models;
 using System.Collections.Generic;
+using Playable.Player;
 using UI.Controllers;
 using UnityEngine.Events;
 
@@ -46,6 +47,8 @@ namespace UI
 
         public void CloseView()
         {
+            PlayerInteraction.CanInteract = true;
+            
             itemManagementController.Close();
             sideMenuController.Close();
             popUpController.Close();
@@ -53,6 +56,8 @@ namespace UI
 
         public void OpenShop(List<ItemModelSo> items, List<ItemModelSo> storeItems, UnityAction<List<ItemModelSo>> callback, UnityAction onClose, UnityAction onBuy)
         {
+            PlayerInteraction.CanInteract = false;
+            
             sideMenuController.Initialize();
             sideMenuController.SetButtonText("Buy", "Back");
             sideMenuController.AddButtonsCallback(

@@ -26,7 +26,6 @@ namespace Playable.Interact
 
         public void OnClick(Player.Player player)
         {
-            Debug.Log($"{gameObject.name} clicked!");
             _material.SetColor("_Color", interactColor);
             _interactionEvent.OnInteraction(player);
             StartCoroutine(WaitAndResetColor());
@@ -40,7 +39,6 @@ namespace Playable.Interact
 
         public void OnHoverEnter()
         {
-            Debug.Log($"{gameObject.name} hover enter!");
             objectNotificationComponent.Initialize();
             objectNotificationComponent.SetText(notificationText);
             _material.SetColor("_Color", hoverColor);
@@ -48,7 +46,6 @@ namespace Playable.Interact
 
         public void OnHoverExit()
         {
-            Debug.Log($"{gameObject.name} hover exit!");
             objectNotificationComponent.Close();
             _material.SetColor("_Color", _originalColor);
         }

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e18e55d36acc4eeb83e1a88cea110539, type: 3}
   m_Name: IconModelSo1
   m_EditorClassIdentifier: 
-  iconName: Uno
-  icon: {fileID: -1700553535, guid: 85fd9bb096cb772469b80b5167fdf97a, type: 3}
+  iconName: error
+  icon: {fileID: 1435334574, guid: 85fd9bb096cb772469b80b5167fdf97a, type: 3}

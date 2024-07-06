@@ -3639,6 +3639,7 @@ MonoBehaviour:
   topMenuController: {fileID: 6602079377779909095}
   sideMenuController: {fileID: 7799625305685156329}
   popUpController: {fileID: 3202792041000681237}
+  iconConfig: {fileID: 11400000, guid: 55ab4fa8a3aeb8942926ad4b070c8d86, type: 2}
 --- !u!222 &6432058605668690969
 CanvasRenderer:
   m_ObjectHideFlags: 0

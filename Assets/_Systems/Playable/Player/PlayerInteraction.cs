@@ -6,6 +6,8 @@ namespace Playable.Player
 {
     public class PlayerInteraction : MonoBehaviour
     {
+        public static bool CanInteract = true;
+        
         public InputActionAsset inputActions;
         
         private Camera _mainCamera;
@@ -39,11 +41,19 @@ namespace Playable.Player
 
         private void Update()
         {
-            HandleHover();
+            if (CanInteract)
+            {
+                HandleHover();
+            }
         }
 
         private void OnClickPerformed(InputAction.CallbackContext context)
         {
+            if (!CanInteract)
+            {
+                return;
+            }
+            
             Vector2 mousePosition = Mouse.current.position.ReadValue();
             Ray ray = _mainCamera.ScreenPointToRay(mousePosition);
             RaycastHit2D hit = Physics2D.GetRayIntersection(ray);

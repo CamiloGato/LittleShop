@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Playable.Player;
 using Shop;
 using Shop.Trade;
 using UI;
@@ -26,6 +27,9 @@ namespace Playable.Interactions
 
         private void OnBuy()
         {
+            PlayerInteraction.CanInteract = true;
+            _uiFacade.CloseView();
+            
             TradeService tradingService = ShopServiceLocator.Instance.Get<TradeService>();
             // Before buying, we need to fill the items to buy | Unlimited Store Items
             store.FillItemsToBuy();

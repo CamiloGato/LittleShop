@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Shop;
 using UI;
 using UI.Models;
@@ -24,6 +23,7 @@ namespace Playable.Interactions
 
         private void OnBuy()
         {
+            _uiFacade.CloseView();
             _uiFacade.ShowPopUp("Added Items", "Items Added Success", "shop");
             store.itemsToBuy.AddRange(items);
             _itemsSelected.Clear();

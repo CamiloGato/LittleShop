@@ -22,6 +22,9 @@ namespace Manager
         private void Start()
         {
             RegisterShopServices();
+            uiFacade.Initialize();
+            uiFacade.CloseView();
+            uiFacade.ShowInitialData();
         }
 
         private void RegisterShopServices()

@@ -3,6 +3,7 @@ using UnityEngine;
 using UI.Models;
 using System.Collections.Generic;
 using Playable.Player;
+using UI.Components;
 using UI.Controllers;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -16,6 +17,7 @@ namespace UI
         [SerializeField] private TopMenuController topMenuController;
         [SerializeField] private SideMenuController sideMenuController;
         [SerializeField] private PopUpController popUpController;
+        [SerializeField] private InitialDataComponent initialDataComponent;
         
         [Header("Data")]
         [SerializeField] private IconConfigSo iconConfig;
@@ -23,12 +25,6 @@ namespace UI
         [SerializeField] private Graphic backgroundImage;
         [SerializeField] private float fadeDuration = 0.5f;
         
-        private void OnEnable()
-        {
-            Initialize();
-            CloseView();
-        }
-
         private void OnDisable()
         {
             Close();
@@ -115,6 +111,11 @@ namespace UI
             };
             
             popUpController.AddPopUp(model);
+        }
+
+        public void ShowInitialData()
+        {
+            initialDataComponent.Initialize();
         }
     }
 }

@@ -12,15 +12,12 @@ namespace UI.Models
         public PlayerInventoryModelSo playerInventoryModel;
         
         [SerializeField] private string playerName;
+        public string PlayerName => playerName;
         
-        public string PlayerName
+        public void ChangeName(string newName)
         {
-            get => playerName;
-            set
-            {
-                playerName = value;
-                onPlayerNameChanged?.Invoke(playerName);
-            }
+            playerName = newName;
+            onPlayerNameChanged.Invoke(playerName);
         }
         
         #if UNITY_EDITOR

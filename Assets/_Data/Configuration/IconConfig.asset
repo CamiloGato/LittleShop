@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f05cc5f43204437ea86aa567b4654e87, type: 3}
-  m_Name: _IconConfig
+  m_Name: IconConfig
   m_EditorClassIdentifier: 
   icons:
   - {fileID: 11400000, guid: 9f96631dfe49f8644b526c1bd414399b, type: 2}
   - {fileID: 11400000, guid: 21899f31eea410f4eadfe81bf5b8fd6a, type: 2}
   - {fileID: 11400000, guid: 78a2f59a704bd674a92c5986298c4917, type: 2}
   - {fileID: 11400000, guid: 6d6154bdf1be7984292a8d3a067e9fb2, type: 2}
+  - {fileID: 11400000, guid: 5aca0a8480a427f46a00dda6ce85d22b, type: 2}

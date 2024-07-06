@@ -19,13 +19,5 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   walletAddress: PlayerAdress.com
-  walletMoney: 973
-  tradeHistory:
-  - transactionHistory:
-      from: {fileID: 11400000, guid: eba5da6d688d3bb4f92a63ce192ca23b, type: 2}
-      to: {fileID: 11400000}
-      amount: 1027
-    time: 08:44
-    items:
-    - {fileID: 11400000, guid: 902fa419b4671884a95a1dd60ed7f8bc, type: 2}
-    - {fileID: 11400000, guid: 203b0399f8672164e95cc7e1384da435, type: 2}
+  walletMoney: 10000
+  tradeHistory: []

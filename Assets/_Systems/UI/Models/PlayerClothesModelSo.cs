@@ -76,6 +76,16 @@ namespace UI.Models
             onClothesChanged?.Invoke(modelSo);
         }
         
+        public void ChangeCloth(PlayerClothesList playerClothesList)
+        {
+            clothes = new PlayerClothesList(playerClothesList);
+            // TODO: I could use another way
+            onClothesChanged?.Invoke(clothes.baseCloth);
+            onClothesChanged?.Invoke(clothes.outCloth);
+            onClothesChanged?.Invoke(clothes.harCloth);
+            onClothesChanged?.Invoke(clothes.hatCloth);
+        }
+        
         public void ChangeItem(ItemModelSo itemModel)
         {
             item = itemModel;

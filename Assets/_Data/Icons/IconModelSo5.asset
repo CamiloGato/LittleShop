@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e18e55d36acc4eeb83e1a88cea110539, type: 3}
-  m_Name: IconModelSo3
+  m_Name: IconModelSo5
   m_EditorClassIdentifier: 
-  iconName: bad
-  icon: {fileID: -993069783, guid: 85fd9bb096cb772469b80b5167fdf97a, type: 3}
+  iconName: sexy
+  icon: {fileID: -550844521, guid: 85fd9bb096cb772469b80b5167fdf97a, type: 3}

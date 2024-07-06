@@ -1908,6 +1908,7 @@ MonoBehaviour:
   timeStampComponent: {fileID: 7077138070224769664}
   playerInfoModel: {fileID: 11400000, guid: 7f224d091b159c045871c735adbdf10b, type: 2}
   timeStampModel: {fileID: 11400000, guid: 6366e5c896d2cee439a3ad48993d836b, type: 2}
+  playerClothesModel: {fileID: 11400000, guid: ac272d45ad9bbb149aff4bdd96fe2741, type: 2}
   moneyDifferenceComponent: {fileID: 1844268957458756986, guid: 50396bde177345c46a19120cb648da5e, type: 3}
   sectionGroup: {fileID: 2501777470596648627}
   finishAnimationEvent:

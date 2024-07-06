@@ -16,6 +16,7 @@ namespace UI.Controllers
         [Header("Data")]
         [SerializeField] private PlayerInfoModelSo playerInfoModel;
         [SerializeField] private TimeStampModelSo timeStampModel;
+        [SerializeField] private PlayerClothesModelSo playerClothesModel;
 
         [Header("Prefabs")]
         [SerializeField] private MoneyDifferenceComponent moneyDifferenceComponent;
@@ -53,6 +54,8 @@ namespace UI.Controllers
             
             playerImageComponent.Initialize();
             timeStampComponent.Initialize();
+            
+            playerImageComponent.SetUpPlayer(playerClothesModel.clothes, playerClothesModel.item);
         }
 
         private void InitializeEvents()
@@ -62,8 +65,14 @@ namespace UI.Controllers
             
             playerInfoModel.onPlayerNameChanged.AddListener(UpdatePlayerName);
             playerInfoModel.playerWalletModel.onWalletMoneyChanged.AddListener(UpdateMoneyDifference);
+            playerClothesModel.onClothesChanged.AddListener(UpdatePlayerView);
             timeStampModel.onTimeChange.AddListener(UpdateTime);
             timeStampModel.onTimeSkyChange.AddListener(UpdateTimeSky);
+        }
+
+        private void UpdatePlayerView(ClothModelSo cloth)
+        {
+            playerImageComponent.UpdatePlayerCloth(cloth);
         }
 
         private void UpdatePlayerName(string playerName)

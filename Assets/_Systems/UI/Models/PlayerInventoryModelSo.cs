@@ -8,6 +8,8 @@ namespace UI.Models
     {
         [SerializeField] private List<ItemModelSo> items;
         
+        public List<ItemModelSo> Items => items;
+        
         public bool HasItem(ItemModelSo item)
         {
             return items.Contains(item);

@@ -103,14 +103,6 @@ namespace UI
                 }
             );
         }
-
-        public void OpenInventory(List<ItemModelSo> items)
-        {
-        }
-
-        public void OpenSell(List<ItemModelSo> items, UnityAction<ItemModelSo> callback)
-        {
-        }
         
         public void ShowPopUp(string title, string message, string icon)
         {

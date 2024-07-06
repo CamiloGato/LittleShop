@@ -32,12 +32,12 @@ namespace Playable.Interactions
 
         private void OnBuy()
         {
-            _uiFacade.CloseView();
+            
         }
 
         private void OnClose()
         {
-            _uiFacade.CloseView();
+            
         }
 
         private void OnShop(ItemModelSo itemsSelected)

@@ -48,7 +48,7 @@ namespace Shop.Trade
             {
                 transactionHistory = transactionHistory,
                 time = timeManager.timeStampModel.TimeString,
-                items = items
+                items = new List<ItemModelSo>(items)
             };
             
             from.playerInfoModel.playerWalletModel.AddTradeHistory(history);

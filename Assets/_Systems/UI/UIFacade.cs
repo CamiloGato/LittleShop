@@ -74,6 +74,7 @@ namespace UI
                 () =>
                 {
                     onUse?.Invoke();
+                    CloseView();
                 },
                 () =>
                 {

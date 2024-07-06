@@ -34,6 +34,8 @@ namespace UI.Controllers
             InitializeEvents();
             
             UpdatePlayerName(playerInfoModel.PlayerName);
+            _currentMoney = playerInfoModel.playerWalletModel.WalletMoney;
+            UpdateMoneyDifference(_currentMoney);
         }
 
         public override void Close()
@@ -71,7 +73,7 @@ namespace UI.Controllers
         
         private void UpdateMoneyDifference(int newMoney)
         {
-            int difference = _currentMoney - newMoney;
+            int difference = newMoney - _currentMoney;
             _currentMoney = newMoney;
             baseView.SetPlayerMoney(newMoney);
 

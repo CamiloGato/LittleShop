@@ -32,7 +32,6 @@ namespace Playable.Interactions
         private void OnBuy()
         {
             PlayerInteraction.CanInteract = true;
-            _uiFacade.CloseView();
             
             TradeService tradingService = ServiceLocator.Instance.Get<TradeService>();
             // Before buying, we need to fill the items to buy | Unlimited Store Items
@@ -61,7 +60,7 @@ namespace Playable.Interactions
 
         private void OnClose()
         {
-            _uiFacade.CloseView();
+            
         }
 
         private void OnShop(ItemModelSo item)

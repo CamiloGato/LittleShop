@@ -16,6 +16,8 @@ namespace UI.Models
         [SerializeField] private int walletMoney;
         [SerializeField] private List<TradeHistory> tradeHistory;
 
+        public int WalletMoney => walletMoney;
+        
         public void SetBalance(int balance)
         {
             walletMoney = balance;

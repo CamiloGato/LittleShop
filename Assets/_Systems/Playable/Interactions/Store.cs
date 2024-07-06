@@ -2,7 +2,7 @@
 using Shop.Trade;
 using UI.Models;
 
-namespace Playable
+namespace Playable.Interactions
 {
     public class Store : TradeEntity
     {

@@ -33,19 +33,16 @@ namespace Manager
             ServiceLocator.Instance.Register<TimeManager>(timeManager);
             ServiceLocator.Instance.Register<DataConfiguration>(dataConfiguration);
         }
-        
-        private void OnShop(List<ItemModelSo> listItems)
+
+        private void Update()
         {
-            foreach (ItemModelSo itemModelSo in listItems)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if (itemModelSo is ClothModelSo clothes)
-                {
-                    Debug.Log($"Buy Clothes: {clothes.name}");
-                }
-                else
-                {
-                    Debug.Log($"Buy Item: {itemModelSo.itemName}");
-                }
+                #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+                #else
+                Application.Quit();
+                #endif
             }
         }
     }

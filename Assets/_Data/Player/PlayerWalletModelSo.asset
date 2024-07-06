@@ -19,5 +19,5 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   walletAddress: PlayerAdress.com
-  walletMoney: 10000
+  walletMoney: 4626
   tradeHistory: []

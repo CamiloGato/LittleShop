@@ -19,6 +19,12 @@ namespace UI.Models
             harCloth = playerClothesList.harCloth;
             hatCloth = playerClothesList.hatCloth;
         }
+
+        public bool HasCloth(ClothModelSo clothModel)
+        {
+            // TODO: Refactor, smell bad
+            return baseCloth == clothModel || outCloth == clothModel || harCloth == clothModel || hatCloth == clothModel;
+        }
         
         public void ChangeLook(ClothModelSo clothModel)
         {
@@ -63,6 +69,15 @@ namespace UI.Models
         
         public PlayerClothesList clothes;
         public ItemModelSo item;
+
+        public bool HasItem(ItemModelSo itemModelSo)
+        {
+            if (item is ClothModelSo clothModelSo)
+            {
+                return clothes.HasCloth(clothModelSo);
+            }
+            return item == itemModelSo;
+        }
         
         public ClothModelSo GetCloth(ClothType type)
         {

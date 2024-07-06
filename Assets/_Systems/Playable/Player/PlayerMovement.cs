@@ -39,7 +39,10 @@ namespace Playable.Player
 
         private void FixedUpdate()
         {
-            _rb.velocity = _moveInput * moveSpeed;
+            if (PlayerInteraction.CanInteract)
+            {
+                _rb.velocity = _moveInput * moveSpeed;
+            }
         }
 
         private void OnMovePerformed(InputAction.CallbackContext context)

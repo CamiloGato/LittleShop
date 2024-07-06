@@ -31,6 +31,20 @@ namespace Playable.Interactions
 
         private void OnUse()
         {
+            // TODO: Check if items are equipped using an specific Id
+            // foreach (ItemModelSo item in _playerCartModel.Items)
+            // {
+            //     if (_player.playerClothesModel.HasItem(item))
+            //     {
+            //         _uiFacade.ShowPopUp(
+            //             "Error Sell",
+            //             "You can not sell items that are equipped",
+            //             "bad"
+            //         );
+            //         return;
+            //     };
+            // }
+            
             TradeService tradingService = ServiceLocator.Instance.Get<TradeService>();
             TradeHistory success = tradingService.Trade(_player, store, _playerCartModel.Items);
             if (success != null)

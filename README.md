@@ -7,7 +7,7 @@
 - https://seliel-the-shaper.itch.io/character-base
 
 
-**Camilo Andres Rojas Hernandez PDF[https://github.com/CamiloGato/LittleShop/blob/main/Camilo%20Andres%20Rojas%20Hernandez%20Design%20System.pdf] resume:**
+**Camilo Andres Rojas Hernandez [PDF Document](https://github.com/CamiloGato/LittleShop/blob/main/Camilo%20Andres%20Rojas%20Hernandez%20Design%20System.pdf) resume:**
 
 **Camilo Andres Rojas Hernandez | :**
 

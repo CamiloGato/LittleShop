@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Shop;
 using Shop.Economy;
 using Shop.Inventory;
 using Shop.Trade;
+using Storage;
 using UI;
 using UI.Models;
 using UnityEngine;
@@ -14,8 +14,8 @@ namespace Manager
     {
         [SerializeField] private UIFacade uiFacade;
         [SerializeField] private TimeManager timeManager;
-        
         [SerializeField] private PlayerInfoModelSo playerInfoModel;
+        [SerializeField] private DataConfiguration dataConfiguration;
         
         public List<ItemModelSo> items;
 
@@ -31,6 +31,7 @@ namespace Manager
             ShopServiceLocator.Instance.Register<TradeService>(new TradeService());
             ShopServiceLocator.Instance.Register<UIFacade>(uiFacade);
             ShopServiceLocator.Instance.Register<TimeManager>(timeManager);
+            ShopServiceLocator.Instance.Register<DataConfiguration>(dataConfiguration);
         }
         
         private void OnShop(List<ItemModelSo> listItems)

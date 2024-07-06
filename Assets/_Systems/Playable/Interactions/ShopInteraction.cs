@@ -18,7 +18,11 @@ namespace Playable.Interactions
         {
             _uiFacade = ServiceLocator.Instance.Get<UIFacade>();
             _playerCartModel = player.cartModel;
-            _uiFacade.OpenShop(items, OnShop, OnClose, OnBuy, ValidateItemSelection);
+            _uiFacade.OpenShop(
+                "Available","Add Cart",
+                items,
+                OnShop, OnClose, OnBuy, ValidateItemSelection
+            );
         }
 
         private bool ValidateItemSelection(ItemModelSo item)

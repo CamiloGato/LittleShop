@@ -58,6 +58,7 @@ namespace UI
         }
 
         public void OpenShop(
+            string itemsTitle, string buttonTitle,
             List<ItemModelSo> items,
             UnityAction<ItemModelSo> callback,
             UnityAction onClose,
@@ -68,7 +69,7 @@ namespace UI
             backgroundImage.CrossFadeAlpha(1, fadeDuration, false);
             
             sideMenuController.Initialize();
-            sideMenuController.SetButtonText("Buy", "Back");
+            sideMenuController.SetButtonText(buttonTitle, "Back");
             sideMenuController.AddButtonsCallback(
                 () =>
                 {
@@ -84,7 +85,7 @@ namespace UI
             bool SelectedCondition(ItemModelSo item) => validateItemSelection?.Invoke(item) ?? false;
             
             itemManagementController.Initialize();
-            itemManagementController.SetUp("Shop");
+            itemManagementController.SetUp($"Shop | {itemsTitle}");
             itemManagementController.AddItem(items, SelectedCondition);
             itemManagementController.AddSelectedItemCallback(
                 item =>

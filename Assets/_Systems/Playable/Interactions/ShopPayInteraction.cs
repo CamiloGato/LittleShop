@@ -22,7 +22,11 @@ namespace Playable.Interactions
             _playerCartModel = player.cartModel;
             
             _uiFacade = ServiceLocator.Instance.Get<UIFacade>();
-            _uiFacade.OpenShop(_playerCartModel.Items, OnShop, OnClose, OnBuy, _ => true);
+            _uiFacade.OpenShop(
+                "Cart", "Buy" ,
+                _playerCartModel.Items,
+                OnShop, OnClose, OnBuy, _ => true
+            );
         }
 
         private void OnBuy()

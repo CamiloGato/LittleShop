@@ -16,7 +16,7 @@ namespace Playable.Interactions
         
         public void OnInteraction(Player.Player player)
         {
-            _uiFacade = ShopServiceLocator.Instance.Get<UIFacade>();
+            _uiFacade = ServiceLocator.Instance.Get<UIFacade>();
             _playerCartModel = player.cartModel;
             _uiFacade.OpenShop(items, OnShop, OnClose, OnBuy, ValidateItemSelection);
         }

@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 namespace Shop
 {
-    public class ShopServiceLocator
+    public class ServiceLocator
     {
-        private static ShopServiceLocator _instance;
+        private static ServiceLocator _instance;
 
-        public static ShopServiceLocator Instance => _instance ??= new ShopServiceLocator();
+        public static ServiceLocator Instance => _instance ??= new ServiceLocator();
 
         private readonly Dictionary<Type, object> _services = new();
 
-        private ShopServiceLocator() { }
+        private ServiceLocator() { }
 
         public void Register<T>(T service)
         {

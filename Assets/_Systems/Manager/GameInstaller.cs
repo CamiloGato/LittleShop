@@ -26,12 +26,12 @@ namespace Manager
 
         private void RegisterShopServices()
         {
-            ShopServiceLocator.Instance.Register<IEconomyService>(new TransactionEconomyService());
-            ShopServiceLocator.Instance.Register<IInventoryService>(new EntityInventoryService());
-            ShopServiceLocator.Instance.Register<TradeService>(new TradeService());
-            ShopServiceLocator.Instance.Register<UIFacade>(uiFacade);
-            ShopServiceLocator.Instance.Register<TimeManager>(timeManager);
-            ShopServiceLocator.Instance.Register<DataConfiguration>(dataConfiguration);
+            ServiceLocator.Instance.Register<IEconomyService>(new TransactionEconomyService());
+            ServiceLocator.Instance.Register<IInventoryService>(new EntityInventoryService());
+            ServiceLocator.Instance.Register<TradeService>(new TradeService());
+            ServiceLocator.Instance.Register<UIFacade>(uiFacade);
+            ServiceLocator.Instance.Register<TimeManager>(timeManager);
+            ServiceLocator.Instance.Register<DataConfiguration>(dataConfiguration);
         }
         
         private void OnShop(List<ItemModelSo> listItems)

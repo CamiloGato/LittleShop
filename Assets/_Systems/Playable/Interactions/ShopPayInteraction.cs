@@ -21,7 +21,7 @@ namespace Playable.Interactions
             _player = player;
             _playerCartModel = player.cartModel;
             
-            _uiFacade = ShopServiceLocator.Instance.Get<UIFacade>();
+            _uiFacade = ServiceLocator.Instance.Get<UIFacade>();
             _uiFacade.OpenShop(_playerCartModel.Items, OnShop, OnClose, OnBuy, _ => true);
         }
 
@@ -30,7 +30,7 @@ namespace Playable.Interactions
             PlayerInteraction.CanInteract = true;
             _uiFacade.CloseView();
             
-            TradeService tradingService = ShopServiceLocator.Instance.Get<TradeService>();
+            TradeService tradingService = ServiceLocator.Instance.Get<TradeService>();
             // Before buying, we need to fill the items to buy | Unlimited Store Items
             store.FillItemsToBuy(_playerCartModel.Items);
             TradeHistory success = tradingService.Trade(store, _player, _playerCartModel.Items);

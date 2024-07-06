@@ -8,8 +8,8 @@ namespace Shop.Trade
 {
     public class TradeService
     {
-        private readonly IEconomyService _economyService = ShopServiceLocator.Instance.Get<IEconomyService>();
-        private readonly IInventoryService _inventoryService = ShopServiceLocator.Instance.Get<IInventoryService>();
+        private readonly IEconomyService _economyService = ServiceLocator.Instance.Get<IEconomyService>();
+        private readonly IInventoryService _inventoryService = ServiceLocator.Instance.Get<IInventoryService>();
         
         public TradeHistory Trade(TradeEntity from, TradeEntity to, List<ItemModelSo> items)
         {
@@ -42,7 +42,7 @@ namespace Shop.Trade
                 return null;
             }
             
-            TimeManager timeManager = ShopServiceLocator.Instance.Get<TimeManager>();
+            TimeManager timeManager = ServiceLocator.Instance.Get<TimeManager>();
             
             TradeHistory history = new TradeHistory()
             {

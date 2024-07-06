@@ -63,7 +63,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: -1
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -3640,6 +3640,8 @@ MonoBehaviour:
   sideMenuController: {fileID: 7799625305685156329}
   popUpController: {fileID: 3202792041000681237}
   iconConfig: {fileID: 11400000, guid: 55ab4fa8a3aeb8942926ad4b070c8d86, type: 2}
+  backgroundImage: {fileID: 3497227661521619688}
+  fadeDuration: 0.5
 --- !u!222 &6432058605668690969
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3661,7 +3663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3207547, g: 0.10092598, b: 0, a: 0.28235295}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.7019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

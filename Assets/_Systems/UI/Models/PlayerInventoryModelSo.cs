@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace UI.Models
@@ -6,18 +7,18 @@ namespace UI.Models
     [CreateAssetMenu(menuName = "Player/Create Player Inventory", fileName = "PlayerInventoryModelSo", order = 0)]
     public class PlayerInventoryModelSo : ScriptableObject
     {
-        [SerializeField] private List<ItemModelSo> items;
+        private HashSet<ItemModelSo> _items = new HashSet<ItemModelSo>();
         
-        public List<ItemModelSo> Items => items;
+        public List<ItemModelSo> Items => _items.ToList();
         
         public bool HasItem(ItemModelSo item)
         {
-            return items.Contains(item);
+            return _items.Contains(item);
         }
         
         public void AddItem(ItemModelSo item)
         {
-            items.Add(item);
+            _items.Add(item);
         }
         
         public void AddItem(List<ItemModelSo> listItems)
@@ -30,7 +31,7 @@ namespace UI.Models
 
         public void RemoveItem(ItemModelSo item)
         {
-            items.Remove(item);
+            _items.Remove(item);
         }
         
         public void RemoveItem(List<ItemModelSo> listItems)

@@ -40,7 +40,7 @@ namespace Playable.Interactions
                 // TODO: No use hard coded values
                 _uiFacade.ShowPopUp(
                     "Success Shop",
-                    $"You bought {success.items.Count} items for {success.transactionHistory.amount}",
+                    $"You bought {success.items.Count} items for ${success.transactionHistory.amount:N0}",
                     "shop"
                 );
                 

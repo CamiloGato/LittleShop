@@ -4,16 +4,20 @@ using UI.Models;
 namespace Shop.Economy
 {
     [Serializable]
-    public class Transaction
+    public class BillHistory
     {
         public PlayerWalletModelSo from;
         public PlayerWalletModelSo to;
         public int amount;
-        public string time;
 
+        public void AddItemPrice(int itemPrice)
+        {
+            amount += itemPrice;
+        }
+        
         public bool CanExecute()
         {
-            return from.HasEnoughMoney(amount);
+            return to.HasEnoughMoney(amount);
         }
         
     }

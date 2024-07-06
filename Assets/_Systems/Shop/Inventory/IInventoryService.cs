@@ -4,6 +4,8 @@ namespace Shop.Inventory
 {
     public interface IInventoryService
     {
-        bool ReplaceItem(PlayerInventoryModelSo from, PlayerInventoryModelSo to, ItemModelSo item);
+        InventoryHistory CreateInventoryHistory(PlayerInventoryModelSo from, PlayerInventoryModelSo to);
+        InventoryHistory AddItem(InventoryHistory inventoryHistory, ItemModelSo item);
+        bool ExecuteReplace(InventoryHistory inventoryHistory);
     }
 }

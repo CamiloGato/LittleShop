@@ -5,13 +5,6 @@ namespace Manager
 {
     public class TimeManager : MonoBehaviour
     {
-        public static TimeManager Instance;
-
-        private void Awake()
-        {
-            Instance = this;
-        }
-
         public TimeStampModelSo timeStampModel;
         [SerializeField] private float timeSpeed;
         private float _currentTime;

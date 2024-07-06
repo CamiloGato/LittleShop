@@ -18,6 +18,24 @@ MonoBehaviour:
   onTradeHistoryChanged:
     m_PersistentCalls:
       m_Calls: []
-  walletAddress: 
-  walletMoney: 100
-  tradeHistory: []
+  walletAddress: PlayerAdress.com
+  walletMoney: 106220
+  tradeHistory:
+  - transactionHistory:
+      from: {fileID: 0}
+      to: {fileID: 0}
+      amount: 0
+    time: 
+    items: []
+  - transactionHistory:
+      from: {fileID: 11400000, guid: eba5da6d688d3bb4f92a63ce192ca23b, type: 2}
+      to: {fileID: 11400000}
+      amount: 1395
+    time: 03:54
+    items: []
+  - transactionHistory:
+      from: {fileID: 11400000, guid: eba5da6d688d3bb4f92a63ce192ca23b, type: 2}
+      to: {fileID: 11400000}
+      amount: 4825
+    time: 07:34
+    items: []

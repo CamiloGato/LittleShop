@@ -7,9 +7,6 @@ namespace UI.Views
 {
     public class SideMenuView : BaseView
     {
-        [Header("Canvas Group")]
-        [SerializeField] private CanvasGroup canvasGroup;
-
         [Header("Buttons")]
         [SerializeField] private Button leftButton;
         [SerializeField] private Button rightButton;
@@ -28,7 +25,7 @@ namespace UI.Views
 
         public override void Initialize()
         {
-            canvasGroup.alpha = 1;
+            base.Initialize();
             leftButton.onClick.AddListener(LeftButton);
             rightButton.onClick.AddListener(RightButton);
             useButton.onClick.AddListener(UseButton);
@@ -37,7 +34,7 @@ namespace UI.Views
 
         public override void Close()
         {
-            canvasGroup.alpha = 0;
+            base.Close();
             leftButton.onClick.RemoveAllListeners();
             rightButton.onClick.RemoveAllListeners();
             useButton.onClick.RemoveAllListeners();

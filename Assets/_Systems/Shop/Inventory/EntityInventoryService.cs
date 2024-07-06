@@ -4,16 +4,28 @@ namespace Shop.Inventory
 {
     public class EntityInventoryService : IInventoryService
     {
-        public bool ReplaceItem(PlayerInventoryModelSo from, PlayerInventoryModelSo to, ItemModelSo item)
+        public InventoryHistory CreateInventoryHistory(PlayerInventoryModelSo from, PlayerInventoryModelSo to)
         {
-            if (from.HasItem(item))
+            return new InventoryHistory()
             {
-                from.AddItem(item);
-                to.RemoveItem(item);
-                return true;
-            }
+                from = from,
+                to = to
+            };
+        }
+
+        public InventoryHistory AddItem(InventoryHistory inventoryHistory, ItemModelSo item)
+        {
+            inventoryHistory.AddItem(item);
+            return inventoryHistory;
+        }
+
+        public bool ExecuteReplace(InventoryHistory inventoryHistory)
+        {
+            if (!inventoryHistory.CanExecute()) return false;
             
-            return false;
+            inventoryHistory.from.RemoveItem(inventoryHistory.items);
+            inventoryHistory.to.AddItem(inventoryHistory.items);
+            return true;
         }
     }
 }

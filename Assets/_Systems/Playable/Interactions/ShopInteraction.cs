@@ -11,33 +11,43 @@ namespace Playable.Interactions
         [SerializeField] private Store store;
         [SerializeField] private List<ItemModelSo> items;
         
-        private List<ItemModelSo> _itemsSelected = new List<ItemModelSo>();
-        
         private UIFacade _uiFacade;
-
+        private CartModelSo _playerCartModel;
+        
         public void OnInteraction(Player.Player player)
         {
             _uiFacade = ShopServiceLocator.Instance.Get<UIFacade>();
-            _uiFacade.OpenShop(items, store.itemsToBuy, OnShop, OnClose, OnBuy);
+            _playerCartModel = player.cartModel;
+            _uiFacade.OpenShop(items, OnShop, OnClose, OnBuy, ValidateItemSelection);
+        }
+
+        private bool ValidateItemSelection(ItemModelSo item)
+        {
+            return _playerCartModel.Items.Contains(item);
         }
 
         private void OnBuy()
         {
             _uiFacade.CloseView();
-            _uiFacade.ShowPopUp("Added Items", "Items Added Success", "shop");
-            store.itemsToBuy.AddRange(items);
-            _itemsSelected.Clear();
         }
 
         private void OnClose()
         {
             _uiFacade.CloseView();
-            _itemsSelected.Clear();
         }
 
-        private void OnShop(List<ItemModelSo> itemsSelected)
+        private void OnShop(ItemModelSo itemsSelected)
         {
-            _itemsSelected = new List<ItemModelSo>(itemsSelected);
+            if (_playerCartModel.Items.Contains(itemsSelected))
+            {
+                _playerCartModel.RemoveItem(itemsSelected);
+                _uiFacade.ShowPopUp("Item Removed", $"{itemsSelected.itemName} removed", "shop");
+            }
+            else
+            {
+                _playerCartModel.AddItem(itemsSelected);
+                _uiFacade.ShowPopUp("Item Added", $"{itemsSelected.itemName} added", "shop");
+            }
         }
     }
 }

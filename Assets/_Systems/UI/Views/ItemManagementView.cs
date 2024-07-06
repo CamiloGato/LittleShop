@@ -5,18 +5,17 @@ namespace UI.Views
 {
     public class ItemManagementView : BaseView
     {
-        [Header("Canvas Group")]
-        [SerializeField] private CanvasGroup canvasGroup;
+        [Header("Texts")]
         [SerializeField] private TMP_Text titleText;
 
         public override void Initialize()
         {
-            canvasGroup.alpha = 1;
+            base.Initialize();
         }
 
         public override void Close()
         {
-            canvasGroup.alpha = 0;
+            base.Close();
         }
 
         public void SetTitle(string title)

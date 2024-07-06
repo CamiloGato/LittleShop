@@ -23,4 +23,4 @@ MonoBehaviour:
     outCloth: {fileID: 11400000, guid: 6de955280ca040044a68fb793225adac, type: 2}
     harCloth: {fileID: 11400000, guid: 7661dfbb7d9518b45934380c1415b0d4, type: 2}
     hatCloth: {fileID: 11400000, guid: 92f02711b3f4ac84984c809b54c4631f, type: 2}
-  item: {fileID: 11400000, guid: 203b0399f8672164e95cc7e1384da435, type: 2}
+  item: {fileID: 11400000, guid: 076bb39c916d5644ba57ac5708d2f930, type: 2}

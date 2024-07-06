@@ -41,7 +41,7 @@ namespace UI.Models
         
         public void AddTradeHistory(TradeHistory history)
         {
-            string boughtOrSold = history.fromWallet == this ? "Bought" : "Sold";
+            string boughtOrSold = history.transactionHistory.from == this ? "Bought" : "Sold";
             tradeHistory.Add(history);
             onTradeHistoryChanged?.Invoke(history, boughtOrSold);
         }

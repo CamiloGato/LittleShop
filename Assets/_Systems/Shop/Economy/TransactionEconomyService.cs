@@ -5,23 +5,27 @@ namespace Shop.Economy
 {
     public class TransactionEconomyService : IEconomyService
     {
-        public Transaction CreateTransaction(PlayerWalletModelSo from, PlayerWalletModelSo to, int amount)
+        public BillHistory CreateTransaction(PlayerWalletModelSo from, PlayerWalletModelSo to)
         {
-            return new Transaction()
+            return new BillHistory()
             {
-                from = from,
                 to = to,
-                amount = amount
+                from = from,
             };
         }
 
-        public bool ExecuteTransaction(Transaction transaction)
+        public BillHistory AddItem(BillHistory transactionHistory, ItemModelSo item)
         {
-            if (!transaction.CanExecute()) return false;
+            transactionHistory.AddItemPrice(item.value);
+            return transactionHistory;
+        }
+
+        public bool ExecuteTransaction(BillHistory transactionHistory)
+        {
+            if (!transactionHistory.CanExecute()) return false;
             
-            transaction.from.RemoveMoney(transaction.amount);
-            transaction.to.AddMoney(transaction.amount);
-            transaction.time = TimeManager.Instance.timeStampModel.TimeString;
+            transactionHistory.to.RemoveMoney(transactionHistory.amount);
+            transactionHistory.from.AddMoney(transactionHistory.amount);
             return true;
         }
     }

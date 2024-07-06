@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Playable.Player;
+﻿using Playable.Player;
 using Shop;
 using Shop.Trade;
 using UI;
@@ -13,16 +12,17 @@ namespace Playable.Interactions
         [SerializeField] private Store store;
         
         private UIFacade _uiFacade;
-        private List<ItemModelSo> _itemsSelected = new List<ItemModelSo>();
+        
         private Player.Player _player;
+        private CartModelSo _playerCartModel;
         
         public void OnInteraction(Player.Player player)
         {
-            _itemsSelected = new List<ItemModelSo>(store.itemsToBuy);
             _player = player;
+            _playerCartModel = player.cartModel;
             
             _uiFacade = ShopServiceLocator.Instance.Get<UIFacade>();
-            _uiFacade.OpenShop(store.itemsToBuy, store.itemsToBuy, OnShop, OnClose, OnBuy);
+            _uiFacade.OpenShop(_playerCartModel.Items, OnShop, OnClose, OnBuy, _ => true);
         }
 
         private void OnBuy()
@@ -32,27 +32,46 @@ namespace Playable.Interactions
             
             TradeService tradingService = ShopServiceLocator.Instance.Get<TradeService>();
             // Before buying, we need to fill the items to buy | Unlimited Store Items
-            store.FillItemsToBuy();
-            TradeHistory success = tradingService.Trade(store, _player, _itemsSelected);
+            store.FillItemsToBuy(_playerCartModel.Items);
+            TradeHistory success = tradingService.Trade(store, _player, _playerCartModel.Items);
             if (success != null)
             {
-                _uiFacade.ShowPopUp("Success", "You bought " + success.items.Count + " items", "shop");
+                // TODO: No use hard coded values
+                _uiFacade.ShowPopUp(
+                    "Success Shop",
+                    $"You bought {success.items.Count} items for {success.transactionHistory.amount}",
+                    "shop"
+                );
             }
             else
             {
-                _uiFacade.ShowPopUp("Error", "You don't have enough money", "shop");
+                _uiFacade.ShowPopUp(
+                    "Error Shop",
+                    "You can not buy this item",
+                    "error"
+                );
             }
+
+            _playerCartModel.ClearKart();
         }
 
         private void OnClose()
         {
-            _itemsSelected.Clear();
             _uiFacade.CloseView();
         }
 
-        private void OnShop(List<ItemModelSo> items)
+        private void OnShop(ItemModelSo item)
         {
-            _itemsSelected = new List<ItemModelSo>(items);
+            if (_playerCartModel.Items.Contains(item))
+            {
+                _playerCartModel.RemoveItem(item);
+                _uiFacade.ShowPopUp("Item Removed", $"{item.itemName} removed", "shop");
+            }
+            else
+            {
+                _playerCartModel.AddItem(item);
+                _uiFacade.ShowPopUp("Item Added", $"{item.itemName} added", "shop");
+            }
         }
     }
 }

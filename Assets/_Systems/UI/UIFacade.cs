@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UI.Models;
 using System.Collections.Generic;
 using Playable.Player;
 using UI.Controllers;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace UI
 {
@@ -17,6 +19,9 @@ namespace UI
         
         [Header("Data")]
         [SerializeField] private IconConfigSo iconConfig;
+
+        [SerializeField] private Graphic backgroundImage;
+        [SerializeField] private float fadeDuration = 0.5f;
         
         private void OnEnable()
         {
@@ -42,28 +47,32 @@ namespace UI
             itemManagementController.Close();
             topMenuController.Close();
             sideMenuController.Close();
-            popUpController.Close();
         }
 
         public void CloseView()
         {
             PlayerInteraction.CanInteract = true;
-            
+            backgroundImage.CrossFadeAlpha(0, fadeDuration, false);
             itemManagementController.Close();
             sideMenuController.Close();
-            popUpController.Close();
         }
 
-        public void OpenShop(List<ItemModelSo> items, List<ItemModelSo> storeItems, UnityAction<List<ItemModelSo>> callback, UnityAction onClose, UnityAction onBuy)
+        public void OpenShop(
+            List<ItemModelSo> items,
+            UnityAction<ItemModelSo> callback,
+            UnityAction onClose,
+            UnityAction onUse,
+            Func<ItemModelSo, bool> validateItemSelection = null)
         {
             PlayerInteraction.CanInteract = false;
+            backgroundImage.CrossFadeAlpha(1, fadeDuration, false);
             
             sideMenuController.Initialize();
             sideMenuController.SetButtonText("Buy", "Back");
             sideMenuController.AddButtonsCallback(
                 () =>
                 {
-                    onBuy?.Invoke();
+                    onUse?.Invoke();
                 },
                 () =>
                 {
@@ -72,34 +81,33 @@ namespace UI
                 }
             );
             
+            bool SelectedCondition(ItemModelSo item) => validateItemSelection?.Invoke(item) ?? false;
+            
             itemManagementController.Initialize();
             itemManagementController.SetUp("Shop");
-            itemManagementController.AddItem(items);
-            itemManagementController.UpdateSelectedItems(storeItems);
+            itemManagementController.AddItem(items, SelectedCondition);
             itemManagementController.AddSelectedItemCallback(
                 item =>
                 {
-                    List<ItemModelSo> selectedItems = itemManagementController.SelectedItemsModels;
-                    callback?.Invoke(selectedItems);
+                    if (item is ClothModelSo cloth)
+                    {
+                        sideMenuController.UpdatePlayerView(cloth);
+                    }
+                    else
+                    {
+                        sideMenuController.UpdatePlayerView(item);
+                    }
+                    callback?.Invoke(item);
                 }
             );
         }
 
         public void OpenInventory(List<ItemModelSo> items)
         {
-            itemManagementController.SetUp("Inventory");
-            itemManagementController.AddItem(items);
         }
 
-        public void OpenSell(List<ItemModelSo> items, UnityAction<List<ItemModelSo>> callback)
+        public void OpenSell(List<ItemModelSo> items, UnityAction<ItemModelSo> callback)
         {
-            itemManagementController.SetUp("Sell");
-            itemManagementController.AddItem(items);
-            itemManagementController.AddSelectedItemCallback((item) =>
-            {
-                List<ItemModelSo> selectedItems = itemManagementController.SelectedItemsModels;
-                callback?.Invoke(selectedItems);
-            });
         }
         
         public void ShowPopUp(string title, string message, string icon)

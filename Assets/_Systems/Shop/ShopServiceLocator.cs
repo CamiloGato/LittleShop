@@ -20,6 +20,10 @@ namespace Shop
 
         public T Get<T>()
         {
+            if (!_services.ContainsKey(typeof(T)))
+            {
+                throw new Exception($"Service {typeof(T)} not found");
+            }
             return (T)_services[typeof(T)];
         }
     }

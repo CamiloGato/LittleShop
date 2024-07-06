@@ -71,8 +71,9 @@ namespace UI.Controllers
         
         private void UpdateMoneyDifference(int newMoney)
         {
-            int difference = newMoney - _currentMoney;
+            int difference = _currentMoney - newMoney;
             _currentMoney = newMoney;
+            baseView.SetPlayerMoney(newMoney);
 
             if (difference == 0) return;
 

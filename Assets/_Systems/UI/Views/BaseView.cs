@@ -4,7 +4,17 @@ namespace UI.Views
 {
     public abstract class BaseView : MonoBehaviour
     {
-        public abstract void Initialize();
-        public abstract void Close();
+        [Header("Canvas Group")]
+        [SerializeField] private CanvasGroup canvasGroup;
+        
+        public virtual void Initialize()
+        {
+            canvasGroup.alpha = 1;
+        }
+
+        public virtual void Close()
+        {
+            canvasGroup.alpha = 0;
+        }
     }
 }

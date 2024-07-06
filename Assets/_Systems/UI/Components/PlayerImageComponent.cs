@@ -16,56 +16,66 @@ namespace UI.Components
         [SerializeField] private Image itemPlayer;
 
         private int _playerLook;
-        private List<ClothModelSo> _playerClothesModelSo;
+        private PlayerClothesList _playerClothes;
+        private ItemModelSo _playerItem;
+        
+        private PlayerClothesList _currentPlayerClothes;
+        private ItemModelSo _currentPlayerItem;
         
         public override void Initialize() { }
 
         public override void Close() { }
 
-        public void SetUpPlayer(List<ClothModelSo> playerClothesModelSo, ItemModelSo itemModelSo)
+        public void SetUpPlayer(PlayerClothesList playerClothesList, ItemModelSo itemModelSo)
         {
-            _playerClothesModelSo = playerClothesModelSo;
-            UpdatePlayerCloths(playerClothesModelSo);
+            _playerClothes = playerClothesList;
+            _playerItem = itemModelSo;
+            
+            _currentPlayerClothes = new PlayerClothesList(playerClothesList);
+            _currentPlayerItem = itemModelSo;
+            
             UpdatePlayerItem(itemModelSo);
+            UpdatePlayerView(_playerLook);
         }
         
         public void UpdatePlayerView(int viewLook)
         {
             _playerLook = viewLook;;
-            UpdatePlayerCloths(_playerClothesModelSo);
-        }
-        
-        public void UpdatePlayerCloths(List<ClothModelSo> playerClothesModelSo)
-        {
-            _playerClothesModelSo = playerClothesModelSo;
-            foreach (ClothModelSo cloth in playerClothesModelSo)
-            {
-                UpdatePlayerCloth(cloth);
-            }
+            UpdatePlayerSprites();
         }
         
         public void UpdatePlayerCloth(ClothModelSo cloth)
         {
-            switch (cloth.type)
-            {
-                case ClothType.Base:
-                    basePlayer.sprite = cloth[_playerLook];
-                    break;
-                case ClothType.Out:
-                    outPlayer.sprite = cloth[_playerLook];
-                    break;
-                case ClothType.Har:
-                    harPlayer.sprite = cloth[_playerLook];
-                    break;
-                case ClothType.Hat:
-                    hatPlayer.sprite = cloth[_playerLook];
-                    break;
-            }
+            ClothModelSo newCloth = _currentPlayerClothes[cloth.type] == cloth 
+                    ? _playerClothes[cloth.type] 
+                    : cloth;
+            
+            _currentPlayerClothes.ChangeLook(newCloth);
+            
+            UpdatePlayerSprites();
         }
-        
+
+        private void UpdatePlayerSprites()
+        {
+            basePlayer.sprite = _currentPlayerClothes[ClothType.Base][_playerLook];
+            outPlayer.sprite = _currentPlayerClothes[ClothType.Out][_playerLook];
+            harPlayer.sprite = _currentPlayerClothes[ClothType.Har][_playerLook];
+            hatPlayer.sprite = _currentPlayerClothes[ClothType.Hat][_playerLook];
+        }
+
         public void UpdatePlayerItem(ItemModelSo model)
         {
-            itemPlayer.sprite = model.icon;
+            ItemModelSo newItemModel = _currentPlayerItem == model 
+                ? _playerItem
+                : model;
+            _currentPlayerItem = newItemModel;
+            
+            UpdateItemSprite();
+        }
+
+        private void UpdateItemSprite()
+        {
+            itemPlayer.sprite = _currentPlayerItem.icon;
         }
 
     }

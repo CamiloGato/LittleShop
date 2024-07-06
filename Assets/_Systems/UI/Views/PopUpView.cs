@@ -1,20 +1,15 @@
-﻿using UnityEngine;
-
-namespace UI.Views
+﻿namespace UI.Views
 {
     public class PopUpView : BaseView
     {
-        [Header("Canvas Group")]
-        [SerializeField] private CanvasGroup canvasGroup;
-
         public override void Initialize()
         {
-            canvasGroup.alpha = 1;
+            base.Initialize();
         }
 
         public override void Close()
         {
-            canvasGroup.alpha = 0;
+            base.Close();
         }
     }
 }

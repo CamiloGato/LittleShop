@@ -75,12 +75,12 @@ namespace UI.Controllers
             backButtonEvent.RemoveAllListeners();
         }
 
-        private void UpdatePlayerView(ClothModelSo cloth)
+        public void UpdatePlayerView(ClothModelSo cloth)
         {
             playerImageComponent.UpdatePlayerCloth(cloth);
         }
         
-        private void UpdatePlayerView(ItemModelSo item)
+        public void UpdatePlayerView(ItemModelSo item)
         {
             playerImageComponent.UpdatePlayerItem(item);
         }

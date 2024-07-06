@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UI.Views;
 using UI.Models;
 using System.Collections.Generic;
@@ -22,7 +23,6 @@ namespace UI.Controllers
         private ComponentPool<ItemComponent> _itemPool;
         
         [SerializeField] private List<ItemComponent> selectedItems = new List<ItemComponent>();
-        public List<ItemModelSo> SelectedItemsModels => selectedItems.ConvertAll(item => item.ItemModel);
 
         public override void Initialize()
         {
@@ -59,20 +59,34 @@ namespace UI.Controllers
             _selectedItemEvent.AddListener(callback);
         }
         
-        public void AddItem(ItemModelSo itemData)
+        public ItemComponent AddItem(ItemModelSo itemData)
         {
-            var item = _itemPool.Get();
+            ItemComponent item = _itemPool.Get();
             item.Initialize();
             item.AddCallback(SelectedItem);
             item.SetItem(itemData);
+            return item;
         }
 
-        public void AddItem(List<ItemModelSo> items)
+        public void AddItem(List<ItemModelSo> items, Func<ItemModelSo, bool> verifySelectedOperation)
         {
-            foreach (var itemData in items)
+            foreach (ItemModelSo itemData in items)
             {
-                AddItem(itemData);
+                ItemComponent item =AddItem(itemData);
+                
+                bool isSelected = verifySelectedOperation(itemData);
+                
+                if (isSelected)
+                {
+                    item.SetSelected(true);
+                    selectedItems.Add(item);
+                }
             }
+        }
+        
+        public void AddItem(List<ItemModelSo> items, bool markAsSelected = false)
+        {
+            AddItem(items, _ => markAsSelected);
         }
 
         public void RemoveItem(ItemComponent item)
@@ -84,19 +98,6 @@ namespace UI.Controllers
             
             item.Close();
             _itemPool.ReturnToPool(item);
-        }
-
-        public void UpdateSelectedItems(List<ItemModelSo> items)
-        {
-            foreach (ItemComponent item in selectedItems)
-            {
-                item.SetSelected(false);
-            }
-            
-            foreach (ItemModelSo itemData in items)
-            {
-                selectedItems.Find(item => item.ItemModel == itemData).SetSelected(true);
-            }
         }
 
         private void SelectedItem(ItemComponent item)

@@ -30,5 +30,13 @@ namespace UI.Models
         {
             items.Remove(item);
         }
+        
+        public void RemoveItem(List<ItemModelSo> listItems)
+        {
+            foreach (ItemModelSo item in listItems)
+            {
+                RemoveItem(item);
+            }
+        }
     }
 }

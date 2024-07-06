@@ -5,19 +5,18 @@ namespace UI.Views
 {
     public class TopMenuView : BaseView
     {
-        [Header("Canvas Group")]
-        [SerializeField] private CanvasGroup canvasGroup;
+        [Header("Texts")]
         [SerializeField] private TMP_Text playerNameText;
         [SerializeField] private TMP_Text playerMoneyText;
 
         public override void Initialize()
         {
-            canvasGroup.alpha = 1;
+            base.Initialize();
         }
 
         public override void Close()
         {
-            canvasGroup.alpha = 0;
+            base.Close();
         }
 
         public void SetPlayerName(string playerName)

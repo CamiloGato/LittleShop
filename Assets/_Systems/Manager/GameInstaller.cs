@@ -18,15 +18,10 @@ namespace Manager
         [SerializeField] private PlayerInfoModelSo playerInfoModel;
         
         public List<ItemModelSo> items;
-        
-        private void Awake()
-        {
-            RegisterShopServices();
-        }
 
         private void Start()
         {
-            playerInfoModel.playerWalletModel.SetBalance(100000);
+            RegisterShopServices();
         }
 
         private void RegisterShopServices()
@@ -35,6 +30,7 @@ namespace Manager
             ShopServiceLocator.Instance.Register<IInventoryService>(new EntityInventoryService());
             ShopServiceLocator.Instance.Register<TradeService>(new TradeService());
             ShopServiceLocator.Instance.Register<UIFacade>(uiFacade);
+            ShopServiceLocator.Instance.Register<TimeManager>(timeManager);
         }
         
         private void OnShop(List<ItemModelSo> listItems)

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Manager;
 using Shop.Economy;
 using Shop.Inventory;
 using UI.Models;
@@ -10,7 +11,7 @@ namespace Shop.Trade
         private readonly IEconomyService _economyService = ShopServiceLocator.Instance.Get<IEconomyService>();
         private readonly IInventoryService _inventoryService = ShopServiceLocator.Instance.Get<IInventoryService>();
         
-        public bool Trade(TradeEntity from, TradeEntity to, ItemModelSo item)
+        public TradeHistory Trade(TradeEntity from, TradeEntity to, List<ItemModelSo> items)
         {
             PlayerWalletModelSo fromWallet = from.playerInfoModel.playerWalletModel;
             PlayerWalletModelSo toWallet = to.playerInfoModel.playerWalletModel;
@@ -18,28 +19,35 @@ namespace Shop.Trade
             PlayerInventoryModelSo fromInventory = from.playerInfoModel.playerInventoryModel;
             PlayerInventoryModelSo toInventory = to.playerInfoModel.playerInventoryModel;
             
-            Transaction transaction = _economyService.CreateTransaction(fromWallet, toWallet, item.value);
-            bool success = _economyService.ExecuteTransaction(transaction);
-
-            if (success)
-            {
-                return _inventoryService.ReplaceItem(fromInventory, toInventory, item);
-            }
+            BillHistory transactionHistory = _economyService.CreateTransaction(fromWallet, toWallet);
+            InventoryHistory inventoryHistory = _inventoryService.CreateInventoryHistory(fromInventory, toInventory);
             
-            return false;
-        }
-
-        public TradeHistory Trade(TradeEntity from, TradeEntity to, List<ItemModelSo> items)
-        {
             foreach (ItemModelSo item in items)
             {
-                if (!Trade(from, to, item)) return null;
+                _economyService.AddItem(transactionHistory, item);
+                _inventoryService.AddItem(inventoryHistory, item);
             }
+            
+            bool billSuccess = _economyService.ExecuteTransaction(transactionHistory);
 
+            if (!billSuccess)
+            {
+                return null;
+            }
+            
+            bool inventorySuccess = _inventoryService.ExecuteReplace(inventoryHistory);
+            
+            if (!inventorySuccess)
+            {
+                return null;
+            }
+            
+            TimeManager timeManager = ShopServiceLocator.Instance.Get<TimeManager>();
+            
             TradeHistory history = new TradeHistory()
             {
-                fromWallet = from.playerInfoModel.playerWalletModel,
-                toWallet = to.playerInfoModel.playerWalletModel,
+                transactionHistory = transactionHistory,
+                time = timeManager.timeStampModel.TimeString,
                 items = items
             };
             

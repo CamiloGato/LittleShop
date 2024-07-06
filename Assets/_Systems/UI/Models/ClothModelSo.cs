@@ -30,16 +30,6 @@ namespace UI.Models
             _ => null
         };
 
-        public void ChangeLook(ClothModelSo clothModel)
-        {
-            if (type != clothModel.type) return;
-            
-            down = clothModel.down;
-            up = clothModel.up;
-            left = clothModel.left;
-            right = clothModel.right;
-        }
-
         #if UNITY_EDITOR
         [Header("Tool")]
         [SerializeField] private string path;

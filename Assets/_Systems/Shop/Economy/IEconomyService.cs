@@ -4,7 +4,8 @@ namespace Shop.Economy
 {
     public interface IEconomyService
     {
-        Transaction CreateTransaction(PlayerWalletModelSo from, PlayerWalletModelSo to, int amount);
-        bool ExecuteTransaction(Transaction transaction);
+        BillHistory CreateTransaction(PlayerWalletModelSo from, PlayerWalletModelSo to);
+        BillHistory AddItem(BillHistory transactionHistory, ItemModelSo item);
+        bool ExecuteTransaction(BillHistory transactionHistory);
     }
 }

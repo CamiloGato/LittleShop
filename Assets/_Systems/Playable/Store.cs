@@ -6,9 +6,7 @@ namespace Playable
 {
     public class Store : TradeEntity
     {
-        public List<ItemModelSo> itemsToBuy = new List<ItemModelSo>();
-
-        public void FillItemsToBuy()
+        public void FillItemsToBuy(List<ItemModelSo> itemsToBuy)
         {
             Inventory.AddItem(itemsToBuy);
         }

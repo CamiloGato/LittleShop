@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Cloth-Out3
   icon: {fileID: 587703418, guid: 5f24cbba6b7b6b14685ece3600c5f2fe, type: 3}
-  value: 624
+  value: 927
   description: Cloth description for Out3
   type: 1
   down: {fileID: 587703418, guid: 5f24cbba6b7b6b14685ece3600c5f2fe, type: 3}

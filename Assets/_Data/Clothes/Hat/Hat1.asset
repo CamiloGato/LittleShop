@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Cloth-Hat1
   icon: {fileID: -15375558, guid: f67c71f85a131eb42beed5e9cd38409a, type: 3}
-  value: 243
+  value: 743
   description: Cloth description for Hat1
   type: 3
   down: {fileID: -15375558, guid: f67c71f85a131eb42beed5e9cd38409a, type: 3}

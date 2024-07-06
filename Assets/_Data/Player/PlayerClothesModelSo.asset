@@ -19,8 +19,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   clothes:
-  - {fileID: 11400000, guid: 87a6802cc24861840bd2cdd90d49bc4e, type: 2}
-  - {fileID: 11400000, guid: f65b37e72b96cb94b8fd4c5aca355073, type: 2}
-  - {fileID: 11400000, guid: 0e569fa2ecee8714fa327a01c491d7e7, type: 2}
-  - {fileID: 11400000, guid: 27757f270d0704d4baa66fa7ae51f73d, type: 2}
+    baseCloth: {fileID: 11400000, guid: 87a6802cc24861840bd2cdd90d49bc4e, type: 2}
+    outCloth: {fileID: 11400000, guid: 6de955280ca040044a68fb793225adac, type: 2}
+    harCloth: {fileID: 11400000, guid: 7661dfbb7d9518b45934380c1415b0d4, type: 2}
+    hatCloth: {fileID: 11400000, guid: 92f02711b3f4ac84984c809b54c4631f, type: 2}
   item: {fileID: 11400000, guid: 203b0399f8672164e95cc7e1384da435, type: 2}

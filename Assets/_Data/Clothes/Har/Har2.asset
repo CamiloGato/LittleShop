@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Cloth-Har2
   icon: {fileID: 1435568050, guid: 5108c1d6b061bc84fb54bf7664dad112, type: 3}
-  value: 848
+  value: 410
   description: Cloth description for Har2
   type: 2
   down: {fileID: 1435568050, guid: 5108c1d6b061bc84fb54bf7664dad112, type: 3}

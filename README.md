@@ -22,7 +22,7 @@ Tools such as Sprite Loader and Data Storage..
 **MVC UI Architecture**
 
 - UI Components: Manage UI visualization and behavior.
-Controllers: Handle logic for interaction between models and views.
+- Controllers: Handle logic for interaction between models and views.
 - Models: Represent game data such as inventories, clothes, and transactions.
 
 **Service Locator and IOC.**

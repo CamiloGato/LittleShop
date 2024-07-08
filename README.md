@@ -8,6 +8,7 @@
 
 
 **Camilo Andres Rojas Hernandez [PDF Document](https://github.com/CamiloGato/LittleShop/blob/main/Camilo%20Andres%20Rojas%20Hernandez%20Design%20System.pdf)**
+
 **Release: [Pre-Release](https://github.com/CamiloGato/LittleShop/releases/tag/Prototype)**
 
 **Camilo Andres Rojas Hernandez | :**
@@ -20,14 +21,15 @@ Tools such as Sprite Loader and Data Storage..
 
 **Architecture and Components:**
 
+![Architecture](Architecture.svg)
+
 **MVC UI Architecture**
 
 - UI Components: Manage UI visualization and behavior.
 - Controllers: Handle logic for interaction between models and views.
 - Models: Represent game data such as inventories, clothes, and transactions.
 
-**Service Locator and IOC.**
-
+**Service Locator and IOC:**
 Services and managers are stored on a Service Locator.
 
 **System Execution:** The GameInstaller serves as the starting point, registering essential services and configuring the user interface. Various interaction components allow players to interact with the store, select clothes, add items to the cart, and complete transactions. The UIFacade centralizes UI operations, displaying initial data and managing player interactions.
@@ -38,6 +40,7 @@ Services and managers are stored on a Service Locator.
 Implementation of Essential Services: Economy, inventory, and trade services were configured using a ServiceLocator pattern to centralize access.
 Development of Interaction Components: Interfaces and classes were implemented to facilitate player interactions with objects like DresserInteraction and ShopInteraction.
 UI Management: The UIFacade was developed to centralize UI management, enabling easy interaction with various UI components and controllers.
+
 
 
 **Self-Assessment:** The system development was successful, meeting all requested features within the set timeline. The code maintained a clean and organized structure, adhering to programming best practices such as separation of concerns and modularity. Areas for improvement include initial resource search, MVC architecture implementation iterations, and character animation challenges due to time constraints and SpriteSheet compatibility issues.
